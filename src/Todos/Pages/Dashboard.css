@@ -1,0 +1,10 @@
+.dashboard-container {
+  border: 1px solid red;
+  min-height: 100vh;
+}
+
+.todo-container {
+  display: flex;
+  justify-content: space-around;
+  min-height: 70vh;
+}
