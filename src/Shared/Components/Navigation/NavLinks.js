@@ -6,19 +6,21 @@ import { NavLink } from "react-router-dom";
 import "./NavLinks.css";
 
 const NavLinks = () => {
+  let login = true;
+
   return (
     <div>
       <ul className="nav-links">
         <li className="nav-link">
           <NavLink to="/" exact>
-            Dashboard
+            dashboard
           </NavLink>
         </li>
         <li className="nav-link">
-          <NavLink to="/account">Account</NavLink>
+          <NavLink to="/account">account</NavLink>
         </li>
         <li className="nav-link">
-          <NavLink to="/auth">LOGIN/LOGOUT</NavLink>
+          <NavLink to="/auth">{login ? "login" : "logout"}</NavLink>
         </li>
       </ul>
     </div>

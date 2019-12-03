@@ -1,15 +1,37 @@
 .userlist-container {
-  border: 1px solid orangered;
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.userlist-container > h2 {
+  color: rgb(11, 144, 194);
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
 .userlist__list {
-  margin-top: 1rem;
-  border: 1px solid green;
-  width: 50%;
-  text-align: left;
-  list-style: none;
+  border: 1px inset rgba(11, 145, 194, 0.486);
+  border-radius: 3px;
+  width: 25rem;
+}
+
+.button-add {
+  margin: 0.5rem;
+  padding: 0.5rem 2rem;
+  color: white;
+  background-color: rgb(11, 144, 194);
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid rgb(11, 144, 194);
+  transition: all 0.3s;
+}
+
+.button-add:hover {
+  background-color: white;
+  border: 1px solid rgb(11, 144, 194);
+  color: rgb(11, 144, 194);
 }

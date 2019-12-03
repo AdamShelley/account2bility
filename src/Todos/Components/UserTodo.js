@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+
+import "./UserTodo.css";
 
 const UserTodo = props => {
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+
+  const handleCheckClick = () => {
+    if (!checkboxChecked) {
+      setCheckboxChecked(true);
+    } else {
+      setCheckboxChecked(false);
+    }
+  };
+  // Check username matches the creator, if it does -> Do not render checkbox
+  const username = "Adam";
   return (
-    <div>
-      <p>
-        {props.id}: {props.description} -- {props.status ? "Completed" : null}
-      </p>
-    </div>
+    <li className="todo-item">
+      {props.description} -- {props.status ? "Completed" : null}
+    </li>
   );
 };
 
