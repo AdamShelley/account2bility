@@ -10,13 +10,42 @@
 }
 
 .todo-item {
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
   letter-spacing: 1px;
   /* margin-right: 1rem; */
+  transition: all 0.3s ease-in-out;
+  padding: 1rem 2rem;
+  display: flex;
+  width: 100%;
+}
+
+.todo-item:hover {
+  background-color: rgba(11, 145, 194, 0.219);
+  cursor: pointer;
 }
 
 .todo-item label {
   position: relative;
+}
+
+.todo-item p {
+  flex: 1;
+}
+
+.todo-complete {
+  background-color: rgba(65, 165, 65, 0.623);
+  color: white;
+}
+
+.cancel-icon {
+  max-width: 20px;
+  /* margin-left: 1rem; */
+  z-index: 2;
+  margin-left: auto;
+}
+
+.cancel-icon:hover {
+  opacity: 0.5;
 }
 
 .checkbox[type="checkbox"] {
@@ -58,4 +87,22 @@
 
 .checkbox:focus + label::before {
   outline: rgb(59, 153, 252) auto 5px;
+}
+
+.deleted-goal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(197, 23, 23, 0.678);
+  color: white;
+}
+
+.deleted-item > .goal {
+  text-decoration-line: line-through;
+}
+
+.delete-text {
+  font-size: 0.7rem;
+  font-weight: 700;
 }
