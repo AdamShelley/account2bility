@@ -4,8 +4,8 @@
   flex-direction: column;
   z-index: 100;
   position: fixed;
-  top: 50%;
-  left: 15%;
+  top: 20%;
+  left: 43%;
   width: 30vw;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -22,7 +22,7 @@
 
 .modal__header h2 {
   margin: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .modal__content {

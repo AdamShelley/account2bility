@@ -21,11 +21,12 @@ const UserList = props => {
         header={`Add a new goal`}
         contentClass="goal-item__modal-content"
         footerClass="goal-item__modal-actions"
-        footer={<button onClick={closeAddHandler}>Add goal</button>}
+        className="modal-addgoal"
+        // footer={<button onClick={closeAddHandler}>Add goal</button>}
       >
         <div className="addgoal-container">
           <h2>Add Goal Here</h2>
-          <NewGoal />
+          <NewGoal closeModal={closeAddHandler} />
         </div>
       </Modal>
 

@@ -2,6 +2,7 @@ import React from "react";
 
 import UserList from "../Components/UserList";
 import PartnerList from "../Components/PartnerList";
+import { deadline } from "../../Shared/util/deadline";
 
 import "./Dashboard.css";
 
@@ -27,13 +28,15 @@ const PARTNER_DUMMY = [
     id: "todo1",
     description: "Eat Noodles",
     creator: "Sam",
-    status: true
+    status: false,
+    deadline: "31st December"
   },
   {
     id: "todo2",
     description: "Read",
     creator: "Sam",
-    status: false
+    status: true,
+    deadline: "21st December"
   }
 ];
 

@@ -1,0 +1,39 @@
+.addGoal-form {
+  font-size: 0.8rem;
+}
+
+#goal {
+}
+
+#description {
+}
+
+#deadline {
+}
+
+.addgoal-button {
+  background-color: rgb(11, 144, 194);
+  color: white;
+  border: 1px solid transparent;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  width: 100%;
+  font-weight: 100;
+  transition: all 0.3s ease-in;
+}
+
+.addgoal-button:hover {
+  background-color: white;
+  color: rgb(11, 144, 194);
+  border: 1px solid rgb(11, 144, 194);
+  cursor: pointer;
+}
+
+.addgoal-button:disabled,
+.addgoal-button:hover:disabled,
+.addgoal-button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
