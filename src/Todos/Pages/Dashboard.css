@@ -1,6 +1,10 @@
 .dashboard-container {
   /* min-height: 100vh; */
   text-align: center;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .dashboard-container > h2 {
@@ -11,8 +15,13 @@
 }
 
 .todo-container {
-  display: flex;
-  justify-content: space-evenly;
   min-height: 40vh;
   margin-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.useraction-container {
+  align-items: center;
 }

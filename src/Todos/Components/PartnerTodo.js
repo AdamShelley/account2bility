@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./UserTodo.css";
 import "./PartnerTodo.css";
-import { spawn } from "child_process";
+import Checkbox from "../../Shared/Components/FormElements/Checkbox";
 
 const PartnerTodo = props => {
   let done = props.status;
@@ -13,7 +13,7 @@ const PartnerTodo = props => {
       className={"todo-item " + (done ? "todo-complete" : null)}
       style={{ textDecorationLine: done ? "line-through" : null }}
     >
-      <input type="checkbox" />
+      <Checkbox name={props.description} />
       <p>{props.description}</p>
     </li>
   );

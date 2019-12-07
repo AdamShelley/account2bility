@@ -23,13 +23,8 @@ const UserTodo = props => {
     >
       <p>{props.description}</p>
       {!done ? (
-        <span>
-          <img
-            onClick={deleteUserGoal}
-            className="cancel-icon"
-            src={cancel}
-            alt="cross"
-          />
+        <span onClick={deleteUserGoal} className="cancel-icon">
+          X
         </span>
       ) : null}
     </li>

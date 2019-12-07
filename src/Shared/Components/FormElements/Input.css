@@ -9,7 +9,7 @@
 }
 
 .form-control label {
-  font-weight: bold;
+  font-weight: 300;
   margin-bottom: 0.5rem;
 }
 
@@ -19,8 +19,9 @@
   font: inherit;
   border: 1px solid #ccc;
   background: #f8f8f8;
-  padding: 0.15rem 0.25rem;
+  padding: 0.5rem 0.25rem;
   resize: none;
+  border-radius: 5px;
 }
 
 .form-control input:focus,

@@ -2,7 +2,7 @@ import React from "react";
 
 import UserList from "../Components/UserList";
 import PartnerList from "../Components/PartnerList";
-import { deadline } from "../../Shared/util/deadline";
+import UserActions from "../../Users/Components/UserActions";
 
 import "./Dashboard.css";
 
@@ -48,6 +48,7 @@ const Dashboard = () => {
         <UserList username={username} todos={TODO_DUMMY} />
         <PartnerList partner={partner} todos={PARTNER_DUMMY} />
       </div>
+      <div className="useraction-container">{/* <UserActions /> */}</div>
     </div>
   );
 };

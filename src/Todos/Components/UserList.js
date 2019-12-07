@@ -4,6 +4,7 @@ import UserTodo from "./UserTodo";
 import "./UserList.css";
 import Modal from "../../Shared/Components/UIElements/Modal";
 import Card from "../../Shared/Components/UIElements/Card";
+import Button from "../../Shared/Components/UIElements/Button";
 import NewGoal from "./NewGoal";
 
 const UserList = props => {
@@ -49,9 +50,9 @@ const UserList = props => {
             })}
           </ul>
         </Card>
-        <button onClick={openAddHandler} className="button button-add">
+        <Button onClick={openAddHandler} className="button button-add">
           ADD
-        </button>
+        </Button>
       </div>
     </React.Fragment>
   );

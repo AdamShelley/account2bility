@@ -1,3 +1,33 @@
 .account-container {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-container--card {
+  width: 50%;
+  height: 50vh;
+}
+
+.account-container--details {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.account-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user-details img,
+.partner-details img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #fff;
 }

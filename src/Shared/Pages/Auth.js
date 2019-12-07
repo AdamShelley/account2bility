@@ -83,7 +83,7 @@ const Auth = props => {
             label="Password"
             placeholder="Password"
             errorText="Please enter a valid password"
-            validators={[VALIDATOR_MINLENGTH()]}
+            validators={[VALIDATOR_MINLENGTH(5)]}
             onInput={inputHandler}
           />
 

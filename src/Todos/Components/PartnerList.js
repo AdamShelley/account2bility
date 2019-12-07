@@ -8,7 +8,7 @@ const PartnerList = props => {
   const username = props.partner;
   return (
     <div className="partnerlist-container">
-      <Card className="partner-card">
+      <Card>
         <h2> {username}'s List</h2>
 
         <ul className="partnerlist__list">

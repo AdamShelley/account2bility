@@ -17,6 +17,8 @@
   padding: 1rem 2rem;
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-item:hover {
@@ -38,10 +40,12 @@
 }
 
 .cancel-icon {
-  max-width: 20px;
   /* margin-left: 1rem; */
   z-index: 2;
-  margin-left: auto;
+  color: red;
+  font-weight: 900;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
 }
 
 .cancel-icon:hover {
