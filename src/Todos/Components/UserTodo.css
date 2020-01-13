@@ -37,15 +37,13 @@
 .todo-complete {
   background-color: rgba(65, 165, 65, 0.623);
   color: white;
+  /* padding: 1rem 2rem; */
 }
 
 .cancel-icon {
   /* margin-left: 1rem; */
   z-index: 2;
   color: red;
-  font-weight: 900;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
 }
 
 .cancel-icon:hover {
@@ -61,11 +59,15 @@
   color: white;
 }
 
+.deleted-item {
+  padding: 0.7rem 2rem;
+}
+
 .deleted-item > .goal {
   text-decoration-line: line-through;
 }
 
 .delete-text {
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   font-weight: 700;
 }

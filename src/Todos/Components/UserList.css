@@ -18,7 +18,7 @@
 }
 
 .button-add {
-  margin: 0.5rem;
+  margin-top: 2rem;
   padding: 0.5rem 2rem;
   color: white;
   background-color: rgb(11, 144, 194);
@@ -34,4 +34,9 @@
   background-color: white;
   border: 1px solid rgb(11, 144, 194);
   color: rgb(11, 144, 194);
+}
+
+.goal-item__modal-content {
+  width: 100%;
+  padding: 1rem 2rem;
 }

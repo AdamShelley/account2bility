@@ -1,10 +1,8 @@
 .dashboard-container {
-  /* min-height: 100vh; */
   text-align: center;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 10% repeat(4, 25vh);
 }
 
 .dashboard-container > h2 {
@@ -12,16 +10,23 @@
   font-weight: 300;
   color: rgb(11, 166, 194);
   letter-spacing: 2px;
+  grid-row: 1;
+  grid-column: 2/5;
+  align-self: start;
+  justify-self: center;
 }
 
 .todo-container {
-  min-height: 40vh;
-  margin-top: 4rem;
+  /* min-height: 20vh; */
   display: flex;
+  grid-column: 1/9;
+  grid-row: 2/5;
   justify-content: space-evenly;
-  align-items: flex-start;
 }
 
 .useraction-container {
-  align-items: center;
+  grid-row: 4;
+  grid-column: 2/5;
+  align-self: center;
+  justify-self: center;
 }

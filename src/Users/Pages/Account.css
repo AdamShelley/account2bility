@@ -8,19 +8,30 @@
 .account-container--card {
   width: 50%;
   height: 50vh;
+  display: grid;
+  grid-template-columns: 10% 40% 40% 10%;
+  grid-template-rows: 10% 70% 20%;
+  justify-self: center;
+  align-self: center;
+}
+
+.account-container--card h2 {
+  grid-row: 1;
+  grid-column: 2/4;
 }
 
 .account-container--details {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+  width: 100%;
   margin-top: 3rem;
-}
-
-.account-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  grid-row: 2;
+  grid-column: 2/4;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-self: center;
+  align-self: center;
 }
 
 .user-details img,
@@ -30,4 +41,41 @@
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #fff;
+}
+
+.user-details,
+.partner-details {
+  align-self: center;
+  justify-self: center;
+}
+
+.user-details {
+  grid-row: 1;
+  width: 15vw;
+}
+
+.partner-details {
+  width: 15vw;
+  grid-column: 2;
+}
+.account-buttons {
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  grid-column: 2/4;
+}
+
+.button--deactivate,
+.button--delink {
+  align-self: center;
+  justify-self: center;
+}
+
+.button--deactivate {
+  grid-column: 1;
+}
+
+.button--delink {
+  grid-column: 2;
 }

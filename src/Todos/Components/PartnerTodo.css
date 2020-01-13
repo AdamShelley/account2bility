@@ -1,35 +1,21 @@
-.partnerlist__list {
-  margin-top: 1rem;
-  width: 50%;
-  text-align: left;
-  list-style: none;
-  width: 50%;
-  min-height: 50%;
-  padding: 0.5rem 1rem;
-}
-
-.todo-item {
+.partner-todo-item {
   /* margin-top: 0.5rem; */
   letter-spacing: 1px;
   /* margin-right: 1rem; */
   transition: all 0.3s ease-in-out;
-  padding: 1rem 2rem;
-  width: 100%;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-}
-
-.todo-item:hover {
-  background-color: rgba(11, 145, 194, 0.219);
-  cursor: pointer;
-}
-
-.todo-item label {
+  align-items: flex-start;
+  /* border: 1px solid red; */
   position: relative;
 }
 
-.todo-complete {
+.partner-todo-item:hover {
+  /* background-color: rgba(11, 145, 194, 0.219); */
+  cursor: pointer;
+}
+
+.partner-todo-complete {
   background-color: rgba(65, 165, 65, 0.623);
   color: white;
 }
@@ -50,4 +36,20 @@
 .delete-text {
   font-size: 0.7rem;
   font-weight: 700;
+}
+
+.partner-todo-item {
+  padding: 0.5rem 1rem;
+}
+
+.partner-todo-item--pending {
+  background-color: orange;
+}
+
+.partner-todo-item--accepted {
+  background-color: rgba(65, 165, 65, 0.623);
+}
+
+.partner-todo-item--rejected {
+  background-color: rgba(197, 23, 23, 0.678);
 }

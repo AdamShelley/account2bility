@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import cancel from "../../img/cancel.png";
+import UserCheck from "../../Shared/Components/FormElements/UserCheck";
 import "./UserTodo.css";
 
 const UserTodo = props => {
   // Check username matches the creator, if it does -> Do not render checkbox
-  const username = "Adam";
-  const partnerName = "Sam";
+  // const username = "Adam";
+  // const partnerName = "Sam";
   let done = props.status;
   const [goalDeleted, setGoalDeleted] = useState(false);
 
@@ -17,17 +17,22 @@ const UserTodo = props => {
 
   let fullGoal;
   fullGoal = (
-    <li
-      className={"todo-item " + (done ? "todo-complete" : null)}
-      style={{ textDecorationLine: done ? "line-through" : null }}
-    >
-      <p>{props.description}</p>
-      {!done ? (
-        <span onClick={deleteUserGoal} className="cancel-icon">
-          X
-        </span>
-      ) : null}
-    </li>
+    <React.Fragment>
+      <li>
+        <UserCheck title={props.title} />
+      </li>
+      {/* <li
+        className={"todo-item " + (done ? "todo-complete" : null)}
+        style={{ textDecorationLine: done ? "line-through" : null }}
+      >
+        <p>{props.title}</p>
+        {!done ? (
+          <span onClick={deleteUserGoal} className="cancel-icon">
+            Delete
+          </span>
+        ) : null}
+      </li> */}
+    </React.Fragment>
   );
 
   const deletedVersion = (

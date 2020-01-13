@@ -8,6 +8,15 @@
   border-radius: 3px;
 }
 
+.logo {
+  text-decoration: none;
+  color: white;
+}
+
+.logo:hover {
+  color: #333;
+}
+
 .title {
   color: white;
   font-weight: 200;

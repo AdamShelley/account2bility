@@ -26,8 +26,7 @@ const UserList = props => {
         // footer={<button onClick={closeAddHandler}>Add goal</button>}
       >
         <div className="addgoal-container">
-          <h2>Add Goal Here</h2>
-          <NewGoal closeModal={closeAddHandler} />
+          <NewGoal closeModal={closeAddHandler} updateHandler={props.update} />
         </div>
       </Modal>
 
@@ -35,7 +34,7 @@ const UserList = props => {
         <Card>
           <h2> {username}'s actions...</h2>
           <ul className="userlist__list">
-            {props.todos.map((todo, index) => {
+            {props.actions.data.map((todo, index) => {
               return (
                 <UserTodo
                   number={index + 1}
@@ -49,10 +48,10 @@ const UserList = props => {
               );
             })}
           </ul>
+          <Button onClick={openAddHandler} addedClass="button-add">
+            ADD
+          </Button>
         </Card>
-        <Button onClick={openAddHandler} className="button button-add">
-          ADD
-        </Button>
       </div>
     </React.Fragment>
   );

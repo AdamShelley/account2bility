@@ -1,9 +1,17 @@
-import React, { useReducer, useCallback } from "react";
+import React, { useState, useReducer, useCallback, useContext } from "react";
 
 import Card from "../../Shared/Components/UIElements/Card";
 import Input from "../../Shared/Components/FormElements/Input";
+import Button from "../../Shared/Components/UIElements/Button";
 
-import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../util/validators";
+import { AuthContext } from "../../Shared/context/auth-context";
+import { useHttpClient } from "../Hooks/http-hook";
+
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE
+} from "../util/validators";
 import "./Auth.css";
 
 const formReducer = (state, action) => {
@@ -34,13 +42,20 @@ const formReducer = (state, action) => {
 };
 
 const Auth = props => {
+  const { sendRequest, isLoading } = useHttpClient();
+  const auth = useContext(AuthContext);
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
-      goal: {
+      name: {
         value: "",
         isValid: false
       },
-      description: {
+      email: {
+        value: "",
+        isValid: false
+      },
+      password: {
         value: "",
         isValid: false
       }
@@ -57,15 +72,65 @@ const Auth = props => {
     });
   }, []);
 
+  const switchToSignUp = e => {
+    e.preventDefault();
+    setIsLoginMode(prev => !prev);
+  };
+
+  console.log(formState);
+  const authSubmitHandler = async e => {
+    e.preventDefault();
+
+    if (isLoginMode) {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:3000/api/v1/users/login`,
+          "POST",
+          JSON.stringify({
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value
+          }),
+          { "Content-Type": "application/json" }
+        );
+        auth.login();
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:3000/api/v1/users/signup`,
+          "POST",
+          JSON.stringify({
+            name: "Adam Shelley",
+            email: "test3@test.com",
+            password: 123456
+          }),
+          { "Content-Type": "application/json" }
+        );
+        auth.login();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   return (
     <div className="auth-container">
       <Card className="login-card">
-        <form
-          onSubmit={
-            props.onSubmit ? props.onSubmit : event => event.preventDefault()
-          }
-        >
-          <h2>Login</h2>
+        <form onSubmit={authSubmitHandler}>
+          <h2>{isLoginMode ? "login" : "Sign-up"}</h2>
+          {!isLoginMode && (
+            <Input
+              element="input"
+              type="text"
+              label="Your name"
+              validators={[VALIDATOR_REQUIRE()]}
+              id="name"
+              errorText="Please enter a name"
+              onInput={inputHandler}
+            />
+          )}
           <Input
             id="email"
             type="email"
@@ -87,8 +152,11 @@ const Auth = props => {
             onInput={inputHandler}
           />
 
-          <button>LOGIN</button>
+          <Button type="submit">{isLoginMode ? "Login" : "Sign-up"}</Button>
         </form>
+        <Button inverse disabled={!isLoginMode} onClick={switchToSignUp}>
+          Switch to: {isLoginMode ? "Sign-up" : "Login"}
+        </Button>
       </Card>
     </div>
   );

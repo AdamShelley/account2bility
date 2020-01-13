@@ -1,19 +1,30 @@
+.checkbox-input {
+  /* border: 1px solid green; */
+  height: 100%;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
 .checkbox-label input {
-  position: absolute;
+  /* position: absolute; */
   opacity: 0;
   cursor: pointer;
   z-index: 10;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .checkbox-label .checkbox-custom {
   position: absolute;
-  top: 0px;
-  left: 0;
+  top: 25%;
+  left: 5%;
   height: 24px;
   width: 24px;
   background-color: transparent;
   border-radius: 5px;
-  border: 2px solid #333;
+  border: 1px solid rgb(11, 166, 194);
   transition: all 0.3s ease-out;
 }
 
@@ -51,4 +62,13 @@
   border-width: 0 2px 2px 0;
   background-color: transparent;
   border-radius: 0;
+}
+
+.checkbox-description {
+  margin-left: 1rem;
+}
+
+.marked {
+  background-color: rgba(65, 165, 65, 0.623);
+  color: white;
 }

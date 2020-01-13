@@ -8,6 +8,16 @@ import partnerpic from "../../img/partner.jpg";
 
 import "./Account.css";
 
+const deleteAccountHandler = () => {
+  console.log("Are you sure modal?");
+  console.log("....deleting account");
+};
+
+const delinkAccountHandler = () => {
+  console.log("Are you sure modal?");
+  console.log("....delinking partner");
+};
+
 const Account = props => {
   return (
     <div className="account-container">
@@ -16,18 +26,30 @@ const Account = props => {
 
         <div className="account-container--details">
           <div className="user-details">
-            <img src={userpic} alt="user-image" />
-            <p>User name</p>
-            <p>Email Address</p>
+            <img src={userpic} alt="user" />
+            <p>{props.username}</p>
+            <p>{props.email}</p>
           </div>
           <div className="partner-details">
             <img src={partnerpic} alt="Partner img" />
-            <p>Partners name</p>
+            <p>{props.partnername}</p>
           </div>
         </div>
         <div className="account-buttons">
-          <Button>DEACTIVATE ACCOUNT</Button>
-          <Button>Remove partner link</Button>
+          <Button
+            onClick={deleteAccountHandler}
+            inverse
+            addedClass="button--deactivate"
+          >
+            Deactivate account
+          </Button>
+          <Button
+            onClick={delinkAccountHandler}
+            inverse
+            addedClass="button--delink"
+          >
+            Remove partner link
+          </Button>
         </div>
       </Card>
     </div>
