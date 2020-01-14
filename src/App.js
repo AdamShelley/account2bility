@@ -13,10 +13,6 @@ import Account from "./Users/Pages/Account";
 import Auth from "./Shared/Pages/Auth";
 import { AuthContext } from "./Shared/context/auth-context";
 
-const username = "Adam Shelley",
-  email = "adam.shelley18@gmail.com",
-  partnerName = "Samantha Foo";
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -40,9 +36,9 @@ function App() {
         </Route>
         <Route path="/account" exact>
           <Account
-            username={username}
-            email={email}
-            partnername={partnerName}
+            username={"John Smith"}
+            email={"john@john.com"}
+            partnername={"Bilbo Baggins"}
           />
         </Route>
         <Route path="/auth" exact>
