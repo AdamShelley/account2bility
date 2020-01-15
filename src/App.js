@@ -14,16 +14,30 @@ import Auth from "./Shared/Pages/Auth";
 import { AuthContext } from "./Shared/context/auth-context";
 
 function App() {
+  const [userId, setUserId] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
+  const [partnerId, setPartnerId] = useState();
+  const [username, setUsername] = useState();
+  const [partnerName, setPartnerName] = useState();
+  const [userEmail, setuserEmail] = useState();
 
-  const login = useCallback(() => {
-    console.log("Logged in!");
+  const login = useCallback(data => {
+    console.log(data);
     setIsLoggedIn(true);
+    setUserId(data.user._id);
+    setUsername(data.user.name);
+    setPartnerName(data.user.partner);
+    setuserEmail(data.user.email);
   }, []);
 
   const logout = useCallback(() => {
     console.log("Logged out!");
     setIsLoggedIn(false);
+    setUserId(null);
+    setUsername(null);
+    setPartnerName(null);
+    setuserEmail(null);
   }, []);
 
   let routes;
@@ -50,9 +64,9 @@ function App() {
   } else {
     routes = (
       <Switch>
-        <Route path="/" exact>
+        {/* <Route path="/" exact>
           <Dashboard />
-        </Route>
+        </Route> */}
         <Route path="/auth" exact>
           <Auth />
         </Route>
@@ -63,7 +77,16 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+      value={{
+        isLoggedIn: isLoggedIn,
+        userId: userId,
+        username: username,
+        userEmail: userEmail,
+        partnerId: partnerId,
+        partnerName: partnerName,
+        login: login,
+        logout: logout
+      }}
     >
       <Router>
         <NavHeader />

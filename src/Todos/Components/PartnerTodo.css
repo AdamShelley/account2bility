@@ -53,3 +53,7 @@
 .partner-todo-item--rejected {
   background-color: rgba(197, 23, 23, 0.678);
 }
+
+.goal-done {
+  background-color: lightgreen;
+}

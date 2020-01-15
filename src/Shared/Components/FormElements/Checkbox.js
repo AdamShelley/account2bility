@@ -12,7 +12,7 @@ const Checkbox = props => {
             <span className="checkbox-custom" onClick={props.onClick}></span>
           </label>
         ) : null}
-        <p className={`checkbox-description `}>{props.name}</p>
+        <p className={`checkbox-description `}>{props.goal}</p>
       </div>
     </React.Fragment>
   );

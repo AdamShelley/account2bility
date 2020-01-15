@@ -79,7 +79,7 @@ const NewGoal = props => {
           description: formState.inputs.description.value,
           deadline: formState.inputs.deadline.value,
           status: false,
-          creator: "test@gmail.com"
+          creator: props.userId
         }),
         { "Content-Type": "application/json" }
       );

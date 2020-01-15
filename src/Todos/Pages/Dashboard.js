@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHttpClient } from "../../Shared/Hooks/http-hook";
 
 import UserList from "../Components/UserList";
@@ -8,35 +8,7 @@ import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
 
 import "./Dashboard.css";
 
-const username = "Adam";
-
-const partner = "Sam";
-const PARTNER_DUMMY = [
-  {
-    id: "todo1",
-    description: "Eat Noodles",
-    creator: "Sam",
-    status: false,
-    deadline: "31st December",
-    marked: {
-      value: true,
-      type: "completed",
-      decision: "pending"
-    }
-  },
-  {
-    id: "todo2",
-    description: "Read",
-    creator: "Sam",
-    status: false,
-    deadline: "21st December",
-    marked: {
-      value: false,
-      type: null,
-      decision: null
-    }
-  }
-];
+import { AuthContext } from "../../Shared/context/auth-context";
 
 const Dashboard = () => {
   const [loadedGoals, setloadedGoals] = useState();
@@ -44,13 +16,16 @@ const Dashboard = () => {
   const [loadedActions, setLoadedActions] = useState();
   const { sendRequest, isLoading } = useHttpClient();
   const [updateGoals, setupdateGoals] = useState(false);
+  const auth = useContext(AuthContext);
 
-  let user = "5e1b58475f1d5e2795c786f8";
+  // let user = "5e1b58475f1d5e2795c786f8";
+  let user = auth.userId;
+  // let partnerName = auth.partnerName;
   let partner = "5e1b58435f1d5e2795c786f7";
 
   const updateActionHandler = () => {
     console.log("called!");
-    setupdateGoals(!updateGoals);
+    setupdateGoals(prev => !prev);
   };
 
   // Fetch the users goals
@@ -60,8 +35,12 @@ const Dashboard = () => {
         const responseData = await sendRequest(
           `http://localhost:3000/api/v1/users/${user}/goals`
         );
+
+        // console.log(responseData);
         setloadedGoals(responseData);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchGoals();
   }, [sendRequest, user, updateGoals]);
@@ -103,13 +82,15 @@ const Dashboard = () => {
       <div className="todo-container">
         {!isLoading && loadedGoals && (
           <UserList
-            username={username}
+            userId={auth.userId}
             actions={loadedGoals}
             update={updateActionHandler}
+            username={auth.username}
+            email={auth.userEmail}
           />
         )}
         {!isLoading && partnerGoals && (
-          <PartnerList partner={partner} todos={partnerGoals} />
+          <PartnerList partner={auth.partnerName} todos={partnerGoals} />
         )}
         {isLoading && <LoadingSpinner />}
       </div>

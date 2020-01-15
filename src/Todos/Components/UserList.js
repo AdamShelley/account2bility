@@ -5,15 +5,14 @@ import "./UserList.css";
 import Modal from "../../Shared/Components/UIElements/Modal";
 import Card from "../../Shared/Components/UIElements/Card";
 import Button from "../../Shared/Components/UIElements/Button";
+
 import NewGoal from "./NewGoal";
 
 const UserList = props => {
   const [showAddModal, setShowAddModal] = useState(false);
-  const username = props.username;
 
   const openAddHandler = () => setShowAddModal(true);
   const closeAddHandler = () => setShowAddModal(false);
-
   return (
     <React.Fragment>
       <Modal
@@ -26,13 +25,17 @@ const UserList = props => {
         // footer={<button onClick={closeAddHandler}>Add goal</button>}
       >
         <div className="addgoal-container">
-          <NewGoal closeModal={closeAddHandler} updateHandler={props.update} />
+          <NewGoal
+            userId={props.userId}
+            closeModal={closeAddHandler}
+            updateHandler={props.update}
+          />
         </div>
       </Modal>
 
       <div className="userlist-container">
-        <Card>
-          <h2> {username}'s actions...</h2>
+        <Card className="usergoals">
+          <h2> {props.username}'s actions...</h2>
           <ul className="userlist__list">
             {props.actions.data.map((todo, index) => {
               return (

@@ -34,12 +34,18 @@ const PartnerList = props => {
 
       <div className="partnerlist-container">
         <Card>
-          <h2> {username}'s List</h2>
+          <h2> {props.partner}'s List</h2>
 
           <ul className="partnerlist__list">
             <ul>
               {props.todos.data.map((todo, index) => {
-                return <PartnerTodo title={todo.title} key={todo.id} />;
+                return (
+                  <PartnerTodo
+                    status={todo.status}
+                    title={todo.title}
+                    key={todo.id}
+                  />
+                );
               })}
             </ul>
           </ul>

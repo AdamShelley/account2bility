@@ -1,5 +1,4 @@
 .checkbox-input {
-  /* border: 1px solid green; */
   height: 100%;
   width: 100%;
   padding: 1rem 2rem;
@@ -7,8 +6,8 @@
   align-items: center;
 }
 
-.checkbox-label input {
-  /* position: absolute; */
+/* .checkbox-label input {
+  position: absolute;
   opacity: 0;
   cursor: pointer;
   z-index: 10;
@@ -71,4 +70,4 @@
 .marked {
   background-color: rgba(65, 165, 65, 0.623);
   color: white;
-}
+} */

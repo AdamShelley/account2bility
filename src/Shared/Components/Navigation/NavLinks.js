@@ -1,14 +1,21 @@
 // Component to render the header links
 
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth-context";
 
+import Button from "../UIElements/Button";
 import "./NavLinks.css";
 
 const NavLinks = () => {
   const auth = useContext(AuthContext);
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    auth.logout();
+    history.push("/auth");
+  };
 
   return (
     <div>
@@ -32,7 +39,9 @@ const NavLinks = () => {
         )}
         {auth.isLoggedIn && (
           <li className="nav-link">
-            <button onClick={auth.logout}>LOGOUT</button>
+            <Button addedClass="logout-button" onClick={logoutHandler}>
+              logout
+            </Button>
           </li>
         )}
       </ul>

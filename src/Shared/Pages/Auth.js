@@ -1,5 +1,7 @@
 import React, { useState, useReducer, useCallback, useContext } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import Card from "../../Shared/Components/UIElements/Card";
 import Input from "../../Shared/Components/FormElements/Input";
 import Button from "../../Shared/Components/UIElements/Button";
@@ -45,6 +47,9 @@ const Auth = props => {
   const { sendRequest, isLoading } = useHttpClient();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
+
+  const history = useHistory();
+
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
       name: {
@@ -77,7 +82,6 @@ const Auth = props => {
     setIsLoginMode(prev => !prev);
   };
 
-  console.log(formState);
   const authSubmitHandler = async e => {
     e.preventDefault();
 
@@ -92,7 +96,8 @@ const Auth = props => {
           }),
           { "Content-Type": "application/json" }
         );
-        auth.login();
+        auth.login(responseData);
+        history.push("/");
       } catch (err) {
         console.log(err);
       }

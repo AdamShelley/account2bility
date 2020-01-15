@@ -2,13 +2,15 @@
   list-style: none;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .nav-link {
   margin-right: 1rem;
 }
 
-.nav-link a {
+.nav-link a,
+.nav-link > .logout-button {
   text-decoration: none;
   color: white;
   letter-spacing: 1.5px;
@@ -21,7 +23,9 @@
 }
 
 .nav-link a:active,
-.nav-link a.active {
+.nav-link a.active,
+.nav-link > .logout-button:active,
+.nav-link > .logout-button.active {
   border: 1px solid #333;
   background-color: white;
   border-radius: 1px;

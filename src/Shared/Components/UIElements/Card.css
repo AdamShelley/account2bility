@@ -7,3 +7,7 @@
   overflow: hidden;
   background: white;
 }
+
+.usergoals {
+  min-height: 15rem;
+}

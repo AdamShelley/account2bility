@@ -4,3 +4,7 @@
   box-sizing: border-box;
   font-family: "Oxygen", sans-serif;
 }
+
+#backdrop-hook {
+  transition: all 0.3s;
+}

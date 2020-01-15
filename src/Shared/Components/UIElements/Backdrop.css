@@ -6,4 +6,5 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.37);
   z-index: 10;
+  transition: all 0.3s;
 }
