@@ -28,6 +28,7 @@ function App() {
     setUserId(data.user._id);
     setUsername(data.user.name);
     setPartnerName(data.user.partner);
+    setPartnerId(data.partner._id);
     setuserEmail(data.user.email);
   }, []);
 

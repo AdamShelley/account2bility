@@ -5,6 +5,7 @@ import "./UserList.css";
 import Modal from "../../Shared/Components/UIElements/Modal";
 import Card from "../../Shared/Components/UIElements/Card";
 import Button from "../../Shared/Components/UIElements/Button";
+import { useHttpClient } from "../../Shared/Hooks/http-hook";
 
 import NewGoal from "./NewGoal";
 
@@ -13,6 +14,38 @@ const UserList = props => {
 
   const openAddHandler = () => setShowAddModal(true);
   const closeAddHandler = () => setShowAddModal(false);
+
+  const { sendRequest, isLoading } = useHttpClient();
+
+  const responseHandler = async (goalId, response) => {
+    console.log(`Request to ${response} goal`);
+
+    // Fetch the route to request accept goal
+
+    try {
+      await sendRequest(
+        `http://localhost:3000/api/v1/actions/`,
+        "POST",
+        JSON.stringify({
+          userId: props.userId,
+          action: response,
+          todoId: goalId
+        }),
+        {
+          "Content-Type": "application/json"
+        }
+      );
+
+      // props.pending(goalId);
+
+      // Delete the todo buttons from the list
+
+      console.log("Done");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <React.Fragment>
       <Modal
@@ -47,6 +80,8 @@ const UserList = props => {
                   description={todo.description}
                   creatorId={todo.creator}
                   status={todo.status}
+                  responseHandler={responseHandler}
+                  addedClass={todo.status ? "goal-pending" : null}
                 />
               );
             })}

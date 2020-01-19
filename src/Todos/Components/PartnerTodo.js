@@ -4,7 +4,11 @@ import "./UserTodo.css";
 import "./PartnerTodo.css";
 
 const PartnerTodo = props => {
-  return <li className={props.status ? "goal-done" : ""}>{props.title}</li>;
+  return (
+    <li className={props.status ? "goal-done" : "" + "todo-item"}>
+      {props.title}
+    </li>
+  );
 };
 
 export default PartnerTodo;

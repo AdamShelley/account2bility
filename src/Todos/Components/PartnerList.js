@@ -8,14 +8,12 @@ import Modal from "../../Shared/Components/UIElements/Modal";
 import "./PartnerList.css";
 
 const PartnerList = props => {
+  console.log(props);
   const [showAddModal, setShowAddModal] = useState(false);
 
   const openAddHandler = () => setShowAddModal(true);
   const closeAddHandler = () => setShowAddModal(false);
 
-  console.log(props);
-
-  const username = props.partner;
   return (
     <React.Fragment>
       <Modal
@@ -33,7 +31,7 @@ const PartnerList = props => {
       </Modal>
 
       <div className="partnerlist-container">
-        <Card>
+        <Card className="usergoals">
           <h2> {props.partner}'s List</h2>
 
           <ul className="partnerlist__list">

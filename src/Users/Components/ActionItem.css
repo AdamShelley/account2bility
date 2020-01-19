@@ -6,7 +6,7 @@
   padding: 1rem 0.5rem;
   margin-top: 1rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -26,11 +26,27 @@
   justify-content: center;
 }
 
+.action-item--tools__buttons {
+  justify-content: flex-start;
+}
 .action-item--tools p {
   font-size: 0.8rem;
 }
-
+/* 
 .action-item--item p {
   font-size: 1rem;
   font-weight: 700;
+} */
+
+.action-item--goal {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #333;
+}
+
+.action-item--info {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: green;
 }

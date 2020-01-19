@@ -102,6 +102,7 @@ const Auth = props => {
         console.log(err);
       }
     } else {
+      // Still placeholders
       try {
         const responseData = await sendRequest(
           `http://localhost:3000/api/v1/users/signup`,

@@ -16,17 +16,24 @@ const Dashboard = () => {
   const [loadedActions, setLoadedActions] = useState();
   const { sendRequest, isLoading } = useHttpClient();
   const [updateGoals, setupdateGoals] = useState(false);
+
   const auth = useContext(AuthContext);
 
-  // let user = "5e1b58475f1d5e2795c786f8";
   let user = auth.userId;
-  // let partnerName = auth.partnerName;
-  let partner = "5e1b58435f1d5e2795c786f7";
+  let partner = auth.partnerId;
 
   const updateActionHandler = () => {
     console.log("called!");
     setupdateGoals(prev => !prev);
   };
+
+  // Update the goal list
+  // const updatePendingActions = goalId => {
+  //   console.log(loadedGoals);
+  //   setloadedGoals(previousGoals =>
+  //     previousGoals.data.filter(goal => goal._id !== goalId)
+  //   );
+  // };
 
   // Fetch the users goals
   useEffect(() => {
@@ -67,7 +74,9 @@ const Dashboard = () => {
         const actionData = await sendRequest(
           `http://localhost:3000/api/v1/actions/${user}`
         );
+
         setLoadedActions(actionData);
+        console.log(actionData);
       } catch (err) {
         console.log(err);
       }
