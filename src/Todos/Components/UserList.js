@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import UserTodo from "./UserTodo";
+import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
 import "./UserList.css";
 import Modal from "../../Shared/Components/UIElements/Modal";
 import Card from "../../Shared/Components/UIElements/Card";
@@ -17,14 +18,14 @@ const UserList = props => {
 
   const { sendRequest, isLoading } = useHttpClient();
 
-  const responseHandler = async (goalId, response) => {
-    console.log(`Request to ${response} goal`);
+  const amount = props.goals.data.length;
 
+  const responseHandler = async (goalId, response) => {
     // Fetch the route to request accept goal
 
     try {
       await sendRequest(
-        `http://localhost:3000/api/v1/actions/`,
+        `${process.env.REACT_APP_BACKEND_URL}/actions/`,
         "POST",
         JSON.stringify({
           userId: props.userId,
@@ -35,12 +36,8 @@ const UserList = props => {
           "Content-Type": "application/json"
         }
       );
-
-      // props.pending(goalId);
-
+      props.refresh();
       // Delete the todo buttons from the list
-
-      console.log("Done");
     } catch (err) {
       console.log(err);
     }
@@ -68,25 +65,47 @@ const UserList = props => {
 
       <div className="userlist-container">
         <Card className="usergoals">
+          {isLoading && <LoadingSpinner asOverlay />}
           <h2> {props.username}'s actions...</h2>
           <ul className="userlist__list">
-            {props.actions.data.map((todo, index) => {
+            {/* {isLoading && <LoadingSpinner asOverlay />} */}
+            {props.goals.data.map((todo, index) => {
+              let style;
+              let decision;
+              if (todo.proceed) {
+                if (todo.proceed === "accept") {
+                  style = "goal-accepted";
+                  decision = "Goal Accepted";
+                } else if (todo.proceed === "reject") {
+                  style = "goal-rejected";
+                  decision = "Goal Rejected";
+                }
+              } else if (!todo.proceed && todo.status === true) {
+                style = "goal-pending";
+                decision = "Goal Pending";
+              }
+
               return (
                 <UserTodo
                   number={index + 1}
-                  key={todo.id}
-                  id={todo.id}
+                  key={todo._id}
+                  id={todo._id}
                   title={todo.title}
                   description={todo.description}
                   creatorId={todo.creator}
                   status={todo.status}
                   responseHandler={responseHandler}
-                  addedClass={todo.status ? "goal-pending" : null}
+                  addedStyle={style}
+                  decision={decision}
                 />
               );
             })}
           </ul>
-          <Button onClick={openAddHandler} addedClass="button-add">
+          <Button
+            disabled={amount >= 6}
+            onClick={openAddHandler}
+            addedClass="button-add"
+          >
             ADD
           </Button>
         </Card>

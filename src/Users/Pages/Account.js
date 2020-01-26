@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Card from "../../Shared/Components/UIElements/Card";
 import Button from "../../Shared/Components/UIElements/Button";
-
-import userpic from "../../img/user.jpg";
+import { AuthContext } from "../../Shared/context/auth-context";
 import partnerpic from "../../img/partner.jpg";
 
 import "./Account.css";
@@ -19,20 +18,22 @@ const delinkAccountHandler = () => {
 };
 
 const Account = props => {
+  console.log(props);
+  const auth = useContext(AuthContext);
+
   return (
     <div className="account-container">
       <Card className="account-container--card">
         <h2>Account Settings</h2>
-
+        <p>This page is WIP - functionality not included yet</p>
         <div className="account-container--details">
           <div className="user-details">
-            <img src={userpic} alt="user" />
-            <p>{props.username}</p>
-            <p>{props.email}</p>
+            <img src={auth.userImage} alt="user" />
+            <p className="user-details--name">{auth.username}</p>
           </div>
           <div className="partner-details">
             <img src={partnerpic} alt="Partner img" />
-            <p>{props.partnername}</p>
+            <p>{auth.partnerName}</p>
           </div>
         </div>
         <div className="account-buttons">

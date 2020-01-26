@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -12,49 +12,30 @@ import Dashboard from "./Todos/Pages/Dashboard";
 import Account from "./Users/Pages/Account";
 import Auth from "./Shared/Pages/Auth";
 import { AuthContext } from "./Shared/context/auth-context";
+import { useAuth } from "./Shared/Hooks/auth-hook";
 
 function App() {
-  const [userId, setUserId] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState();
-  const [partnerId, setPartnerId] = useState();
-  const [username, setUsername] = useState();
-  const [partnerName, setPartnerName] = useState();
-  const [userEmail, setuserEmail] = useState();
-
-  const login = useCallback(data => {
-    console.log(data);
-    setIsLoggedIn(true);
-    setUserId(data.user._id);
-    setUsername(data.user.name);
-    setPartnerName(data.user.partner);
-    setPartnerId(data.partner._id);
-    setuserEmail(data.user.email);
-  }, []);
-
-  const logout = useCallback(() => {
-    console.log("Logged out!");
-    setIsLoggedIn(false);
-    setUserId(null);
-    setUsername(null);
-    setPartnerName(null);
-    setuserEmail(null);
-  }, []);
-
+  const {
+    token,
+    login,
+    logout,
+    userId,
+    username,
+    userEmail,
+    partnerId,
+    partnerName,
+    userImage
+  } = useAuth();
   let routes;
 
-  if (isLoggedIn) {
+  if (token) {
     routes = (
       <Switch>
         <Route path="/" exact>
           <Dashboard />
         </Route>
         <Route path="/account" exact>
-          <Account
-            username={"John Smith"}
-            email={"john@john.com"}
-            partnername={"Bilbo Baggins"}
-          />
+          <Account />
         </Route>
         <Route path="/auth" exact>
           <Auth />
@@ -65,13 +46,10 @@ function App() {
   } else {
     routes = (
       <Switch>
-        {/* <Route path="/" exact>
-          <Dashboard />
-        </Route> */}
         <Route path="/auth" exact>
           <Auth />
         </Route>
-        <Redirect to="/auth" />
+        <Redirect to="/" />
       </Switch>
     );
   }
@@ -79,14 +57,16 @@ function App() {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn: isLoggedIn,
+        isLoggedIn: !!token,
+        token: token,
         userId: userId,
         username: username,
         userEmail: userEmail,
         partnerId: partnerId,
         partnerName: partnerName,
         login: login,
-        logout: logout
+        logout: logout,
+        userImage: userImage
       }}
     >
       <Router>

@@ -4,7 +4,8 @@ import { useHttpClient } from "../../Shared/Hooks/http-hook";
 import UserList from "../Components/UserList";
 import PartnerList from "../Components/PartnerList";
 import UserActions from "../../Users/Components/UserActions";
-import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
+import GoalHistory from "../../Users/Components/GoalHistory";
+import Footer from "../../Shared/Pages/Footer";
 
 import "./Dashboard.css";
 
@@ -17,94 +18,117 @@ const Dashboard = () => {
   const { sendRequest, isLoading } = useHttpClient();
   const [updateGoals, setupdateGoals] = useState(false);
 
+  const [refreshFlag, setRefreshFlag] = useState(false);
+
   const auth = useContext(AuthContext);
 
   let user = auth.userId;
-  let partner = auth.partnerId;
 
   const updateActionHandler = () => {
-    console.log("called!");
     setupdateGoals(prev => !prev);
   };
 
-  // Update the goal list
-  // const updatePendingActions = goalId => {
-  //   console.log(loadedGoals);
-  //   setloadedGoals(previousGoals =>
-  //     previousGoals.data.filter(goal => goal._id !== goalId)
-  //   );
-  // };
+  const refreshActions = () => {
+    setRefreshFlag(true);
+  };
 
   // Fetch the users goals
   useEffect(() => {
     const fetchGoals = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:3000/api/v1/users/${user}/goals`
+          `${process.env.REACT_APP_BACKEND_URL}/users/${user}/goals`
         );
 
-        // console.log(responseData);
         setloadedGoals(responseData);
       } catch (err) {
         console.log(err);
       }
     };
     fetchGoals();
-  }, [sendRequest, user, updateGoals]);
+    setRefreshFlag(false);
+  }, [sendRequest, user, updateGoals, refreshFlag]);
 
   // Fetch the partners goals
   useEffect(() => {
-    const partnerGoals = async () => {
-      try {
-        const responseData = await sendRequest(
-          `http://localhost:3000/api/v1/users/${partner}/goals`
-        );
-        setPartnerGoals(responseData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    partnerGoals();
-  }, [partner, sendRequest]);
+    if (auth.partnerId) {
+      const partnerGoals = async () => {
+        try {
+          const responseData = await sendRequest(
+            `${process.env.REACT_APP_BACKEND_URL}/users/${auth.partnerId}/goals`
+          );
+          setPartnerGoals(responseData);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      partnerGoals();
+    }
+  }, [auth.partnerId, sendRequest]);
 
   //Fetch the users action list
   useEffect(() => {
     const fetchActions = async () => {
       try {
         const actionData = await sendRequest(
-          `http://localhost:3000/api/v1/actions/${user}`
+          `${process.env.REACT_APP_BACKEND_URL}/actions/${user}`
         );
 
         setLoadedActions(actionData);
-        console.log(actionData);
       } catch (err) {
         console.log(err);
       }
     };
     fetchActions();
-  }, [sendRequest, setLoadedActions, user]);
+    setRefreshFlag(false);
+  }, [sendRequest, setLoadedActions, user, refreshFlag]);
 
   return (
-    <div className="dashboard-container">
+    <div className="app-container">
       <h2>Dashboard</h2>
+      <div className="dashboard-container">
+        <div className="leftside-container">
+          {!isLoading && loadedGoals && (
+            <UserList
+              userId={auth.userId}
+              goals={loadedGoals}
+              update={updateActionHandler}
+              username={auth.username}
+              email={auth.userEmail}
+              refresh={refreshActions}
+            />
+          )}
 
-      <div className="todo-container">
-        {!isLoading && loadedGoals && (
-          <UserList
-            userId={auth.userId}
-            actions={loadedGoals}
-            update={updateActionHandler}
-            username={auth.username}
-            email={auth.userEmail}
-          />
-        )}
-        {!isLoading && partnerGoals && (
-          <PartnerList partner={auth.partnerName} todos={partnerGoals} />
-        )}
-        {isLoading && <LoadingSpinner />}
+          <div className="goalhistory-container">
+            <GoalHistory userId={auth.userId} />
+          </div>
+
+          {/* {isLoading && <LoadingSpinner />} */}
+        </div>
+        <div className="rightside-container">
+          {!isLoading && partnerGoals && (
+            <PartnerList
+              partner={auth.partnerName}
+              userId={auth.userId}
+              todos={partnerGoals}
+              partnerConnected
+              token={auth.token}
+            />
+          )}
+          {!isLoading && !partnerGoals && <PartnerList />}
+
+          <div className="useraction-container">
+            {!isLoading && loadedActions && (
+              <UserActions
+                refreshActions={refreshActions}
+                actions={loadedActions}
+              />
+            )}
+          </div>
+        </div>
       </div>
-      <div className="useraction-container">
-        {!isLoading && loadedActions && <UserActions actions={loadedActions} />}
+      <div className="footer-container">
+        <Footer />
       </div>
     </div>
   );

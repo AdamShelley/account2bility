@@ -1,0 +1,19 @@
+.suggestion__tab--container {
+}
+
+.suggestion__tab--container h2 {
+  font-weight: 500;
+}
+
+.suggestion__tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+.suggestion__tab input {
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  border: 1px solid rgba(51, 51, 51, 0.192);
+}

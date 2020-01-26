@@ -36,11 +36,13 @@
 
 .user-details img,
 .partner-details img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #fff;
+  border: 1px solid #fafafa;
+  margin-bottom: 1.5rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
 }
 
 .user-details,
@@ -52,6 +54,12 @@
 .user-details {
   grid-row: 1;
   width: 15vw;
+}
+
+.user-details--name {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #333;
 }
 
 .partner-details {

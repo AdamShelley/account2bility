@@ -1,16 +1,16 @@
-.action-container {
-  width: 35vw;
+.history-container {
   margin-bottom: 2rem;
 }
 
-.action-container h2 {
+.history-container h2 {
   color: rgb(11, 144, 194);
   font-size: 1.5rem;
   font-weight: 300;
 }
 
-.action-container__details {
+.history-container__details {
   min-height: 30vh;
+  width: 35vw;
   border-top: 1px solid rgb(11, 144, 194);
   border-bottom: 1px solid rgb(11, 144, 194);
 }

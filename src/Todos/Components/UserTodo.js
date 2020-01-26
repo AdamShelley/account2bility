@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Button from "../../Shared/Components/UIElements/Button";
 
@@ -6,17 +6,15 @@ import "./UserTodo.css";
 
 const UserTodo = props => {
   const acceptClicked = () => {
-    console.log("accept Clicked");
     props.responseHandler(props.id, "accept");
   };
 
   const rejectClicked = () => {
-    console.log("accept Clicked");
-    props.responseHandler(props.id, "reject");
+    props.responseHandler(props.id, "delete");
   };
 
   return (
-    <li className={`todo-item todo-item-${props.addedClass}`}>
+    <li className={`todo-item todo-item-${props.addedStyle}`}>
       <p>{props.title}</p>
       {!props.status ? (
         <React.Fragment>
@@ -37,7 +35,7 @@ const UserTodo = props => {
           </Button>{" "}
         </React.Fragment>
       ) : (
-        <p>"Pending..."</p>
+        <p>{props.decision}</p>
       )}
     </li>
   );

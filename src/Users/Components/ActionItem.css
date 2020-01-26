@@ -39,7 +39,7 @@
 } */
 
 .action-item--goal {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
   color: #333;
 }
@@ -49,4 +49,19 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: green;
+}
+
+.accept-requested {
+  border-bottom: 1px solid rgba(7, 243, 46, 0.288);
+  border-radius: 5px;
+}
+
+.delete-requested {
+  border-bottom: 1px solid rgba(255, 0, 0, 0.486);
+
+  border-radius: 5px;
+}
+
+.action-item--info--delete {
+  color: red;
 }

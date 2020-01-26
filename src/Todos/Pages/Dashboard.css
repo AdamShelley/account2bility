@@ -1,33 +1,67 @@
-.dashboard-container {
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 10% repeat(5, 20vh);
+.app-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.dashboard-container > h2 {
-  font-size: 1.3rem;
+.app-container > h2 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
   font-weight: 300;
   color: rgb(11, 166, 194);
   letter-spacing: 2px;
-  grid-row: 1;
-  grid-column: 2/5;
-  align-self: start;
-  justify-self: center;
 }
 
-.todo-container {
-  /* min-height: 20vh; */
+.dashboard-container {
+  margin-top: 2rem;
+  text-align: center;
   display: flex;
-  grid-column: 1/9;
-  grid-row: 2/5;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: space-evenly;
+  width: 100%;
+}
+
+.leftside-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.rightside-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.history-container {
+  margin: 0;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .useraction-container {
   /* grid-row: 4; */
-  grid-column: 2/5;
+  /* grid-column: 2/5;
   align-self: flex-start;
-  justify-self: center;
+  justify-self: center; */
   padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.footer {
+  background-color: rgb(80, 166, 193);
+  color: white;
+  font-size: 0.8rem;
+  padding: 1rem;
+  grid-column: 1/ 9;
+  display: flex;
+  font-weight: 700;
+  max-height: 1rem;
+  align-items: center;
 }

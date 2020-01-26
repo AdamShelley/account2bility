@@ -4,8 +4,8 @@
   flex-direction: column;
   z-index: 100;
   position: fixed;
-  top: 24%;
-  left: 44%;
+  top: 20%;
+  left: 45%;
   width: 30vw;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -35,4 +35,25 @@
 
 .modal__footer {
   padding: 1rem 0.5rem;
+}
+
+.suggestion-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 22%;
+  left: 24%;
+}
+
+.suggest__modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 10rem;
+}
+
+.logout-modal {
+  top: 20vh;
+  left: 35vw;
 }

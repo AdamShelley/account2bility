@@ -1,6 +1,7 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useContext } from "react";
 
 import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
+import { AuthContext } from "../../Shared/context/auth-context";
 
 import Input from "../../Shared/Components/FormElements/Input";
 import {
@@ -38,6 +39,8 @@ const formReducer = (state, action) => {
 };
 
 const NewGoal = props => {
+  const auth = useContext(AuthContext);
+
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
       goal: {
@@ -72,7 +75,7 @@ const NewGoal = props => {
 
     try {
       await sendRequest(
-        "http://localhost:3000/api/v1/users/newgoal",
+        `${process.env.REACT_APP_BACKEND_URL}/users/newgoal`,
         "POST",
         JSON.stringify({
           title: formState.inputs.goal.value,
@@ -81,9 +84,14 @@ const NewGoal = props => {
           status: false,
           creator: props.userId
         }),
-        { "Content-Type": "application/json" }
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token
+        }
       );
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
     props.closeModal();
     props.updateHandler();

@@ -44,7 +44,7 @@ const formReducer = (state, action) => {
 };
 
 const Auth = props => {
-  const { sendRequest, isLoading } = useHttpClient();
+  const { sendRequest } = useHttpClient();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
 
@@ -88,13 +88,16 @@ const Auth = props => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          `http://localhost:3000/api/v1/users/login`,
+          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value
           }),
-          { "Content-Type": "application/json" }
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token
+          }
         );
         auth.login(responseData);
         history.push("/");
@@ -102,22 +105,42 @@ const Auth = props => {
         console.log(err);
       }
     } else {
-      // Still placeholders
       try {
-        const responseData = await sendRequest(
-          `http://localhost:3000/api/v1/users/signup`,
+        await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           "POST",
           JSON.stringify({
-            name: "Adam Shelley",
-            email: "test3@test.com",
-            password: 123456
+            name: formState.inputs.name.value,
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value
           }),
           { "Content-Type": "application/json" }
         );
-        auth.login();
+        // auth.login();
       } catch (err) {
         console.log(err);
       }
+    }
+  };
+
+  const signInTester = async () => {
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/users/login`,
+        "POST",
+        JSON.stringify({
+          email: "test3@gmail.com",
+          password: "123456"
+        }),
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token
+        }
+      );
+      auth.login(responseData);
+      history.push("/");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -160,8 +183,13 @@ const Auth = props => {
 
           <Button type="submit">{isLoginMode ? "Login" : "Sign-up"}</Button>
         </form>
-        <Button inverse disabled={!isLoginMode} onClick={switchToSignUp}>
+        <Button inverse onClick={switchToSignUp}>
           Switch to: {isLoginMode ? "Sign-up" : "Login"}
+        </Button>
+
+        <Button addedClass="tester-login" onClick={signInTester}>
+          {" "}
+          TESTER Account{" "}
         </Button>
       </Card>
     </div>
