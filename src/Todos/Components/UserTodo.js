@@ -13,15 +13,8 @@ const UserTodo = props => {
     props.responseHandler(props.id, "delete");
   };
 
-  const goalClickedHandler = () => {
-    props.clicked(props.id);
-  };
-
   return (
-    <li
-      onClick={goalClickedHandler}
-      className={`todo-item todo-item-${props.addedStyle}`}
-    >
+    <li className={`todo-item todo-item-${props.addedStyle}`}>
       <p>{props.title}</p>
       {!props.status ? (
         <React.Fragment>

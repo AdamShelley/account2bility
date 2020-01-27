@@ -4,25 +4,6 @@ import Button from "../../Shared/Components/UIElements/Button";
 import "./ActionItem.css";
 
 const ActionItem = props => {
-  const suggestionThankHandler = () => {
-    // DELETE the action
-  };
-
-  if (props.marked.suggestion) {
-    return (
-      <div className="action-item suggested-item">
-        <div className="suggested-item__left">
-          <Button onClick={suggestionThankHandler} addedClass="button-accept">
-            Thanks!
-          </Button>
-          <p>Your partner has suggested you add: </p>
-        </div>
-
-        <p className="suggested-item__suggestion">{props.marked.suggestion}</p>
-      </div>
-    );
-  }
-
   const actionRequest = props.marked.action === "accept" ? "accept" : "delete";
 
   const acceptResponseHandler = event => {

@@ -13,8 +13,6 @@ export const useAuth = () => {
   const [userImage, setUserImage] = useState();
 
   const login = useCallback((data, expirationDate) => {
-    console.log("logging in");
-    console.log(data);
     setToken(data.token);
 
     const tokenExpirationDate =

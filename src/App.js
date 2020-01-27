@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -9,13 +9,10 @@ import {
 
 import NavHeader from "./Shared/Components/Navigation/NavHeader";
 import Dashboard from "./Todos/Pages/Dashboard";
-// import Account from "./Users/Pages/Account";
+import Account from "./Users/Pages/Account";
 import Auth from "./Shared/Pages/Auth";
 import { AuthContext } from "./Shared/context/auth-context";
 import { useAuth } from "./Shared/Hooks/auth-hook";
-import LoadingSpinner from "./Shared/Components/UIElements/LoadingSpinner";
-
-const Account = React.lazy(() => import("./Users/Pages/Account"));
 
 function App() {
   const {
@@ -40,7 +37,7 @@ function App() {
         <Route path="/account" exact>
           <Account />
         </Route>
-        <Route path="/" exact>
+        <Route path="/auth" exact>
           <Auth />
         </Route>
         <Redirect to="/" />
@@ -52,7 +49,7 @@ function App() {
         <Route path="/auth" exact>
           <Auth />
         </Route>
-        <Redirect to="/auth" />
+        <Redirect to="/" />
       </Switch>
     );
   }
@@ -74,17 +71,7 @@ function App() {
     >
       <Router>
         <NavHeader />
-        <main>
-          <Suspense
-            fallback={
-              <div className="center">
-                <LoadingSpinner asOverlay />
-              </div>
-            }
-          >
-            {routes}
-          </Suspense>
-        </main>
+        <main>{routes}</main>
       </Router>
     </AuthContext.Provider>
   );
