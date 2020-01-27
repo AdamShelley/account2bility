@@ -11,6 +11,7 @@ import "./PartnerList.css";
 import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
 
 const PartnerList = props => {
+  console.log(props);
   const auth = useContext(AuthContext);
   const { isLoading, sendRequest } = useHttpClient();
   const [showAddModal, setShowAddModal] = useState(false);
@@ -22,7 +23,6 @@ const PartnerList = props => {
 
   const linkPartnerHandler = async data => {
     try {
-      // Placeholder partner
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}`,
         "PATCH",

@@ -15,6 +15,7 @@ import {
   VALIDATOR_REQUIRE
 } from "../util/validators";
 import "./Auth.css";
+import LoadingSpinner from "../Components/UIElements/LoadingSpinner";
 
 const formReducer = (state, action) => {
   switch (action.type) {
@@ -44,7 +45,7 @@ const formReducer = (state, action) => {
 };
 
 const Auth = props => {
-  const { sendRequest } = useHttpClient();
+  const { sendRequest, isLoading } = useHttpClient();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
 
@@ -116,10 +117,7 @@ const Auth = props => {
           }),
           { "Content-Type": "application/json" }
         );
-        // auth.login();
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     }
   };
 
@@ -129,7 +127,7 @@ const Auth = props => {
         `${process.env.REACT_APP_BACKEND_URL}/users/login`,
         "POST",
         JSON.stringify({
-          email: "test3@gmail.com",
+          email: "test4@gmail.com",
           password: "123456"
         }),
         {
@@ -187,6 +185,7 @@ const Auth = props => {
           Switch to: {isLoginMode ? "Sign-up" : "Login"}
         </Button>
 
+        {isLoading && <LoadingSpinner asOverlay />}
         <Button addedClass="tester-login" onClick={signInTester}>
           {" "}
           TESTER Account{" "}

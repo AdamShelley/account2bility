@@ -14,6 +14,7 @@ const GoalHistory = props => {
 
   useEffect(() => {
     const fetchHistory = async () => {
+      console.log("Fetching History");
       try {
         const history = await sendRequest(
           `${process.env.REACT_APP_BACKEND_URL}/history/${props.userId}`
@@ -30,7 +31,7 @@ const GoalHistory = props => {
   return (
     <div className="history-container">
       <Card className="history-container__details">
-        <h2>History container</h2>
+        <h2>History</h2>
 
         <p>
           This will store goals that have been completed (either deleted or
