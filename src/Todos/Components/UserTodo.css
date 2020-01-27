@@ -9,24 +9,23 @@
 }
 
 .todo-item {
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
   display: flex;
   overflow: hidden;
   font-size: 0.9rem;
   padding: 0.5rem;
   align-items: center;
-
-  border: 2px solid rgb(204, 215, 218);
-  border-radius: 1px;
+  border: 0.5px solid rgba(51, 51, 51, 0.151);
+  border-radius: 2px;
   background-color: #fff;
   color: #333;
   font-weight: 700;
 }
 
-.todo-item:hover {
+/* .todo-item:hover {
   background-color: rgba(11, 145, 194, 0.219);
   cursor: pointer;
-}
+} */
 
 .todo-item label {
   position: relative;
@@ -76,7 +75,7 @@
 }
 
 .todo-item-goal-pending {
-  border: 1px solid rgba(51, 51, 51, 0.151);
+  border: 1px solid rgb(11, 166, 194);
   background-color: #fafafa;
   color: #333;
   font-weight: 600;
