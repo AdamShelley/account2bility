@@ -52,16 +52,32 @@
 }
 
 .accept-requested {
-  border-bottom: 1px solid rgba(7, 243, 46, 0.288);
+  border-bottom: 1px solid rgba(11, 12, 11, 0.288);
   border-radius: 5px;
 }
 
 .delete-requested {
-  border-bottom: 1px solid rgba(255, 0, 0, 0.486);
+  border-bottom: 1px solid rgba(11, 12, 11, 0.288);
 
   border-radius: 5px;
 }
 
 .action-item--info--delete {
   color: red;
+}
+
+.suggested-item {
+  border-bottom: 1px solid rgba(11, 12, 11, 0.288);
+}
+
+.suggested-item__left {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+}
+
+.suggested-item__suggestion {
+  font-size: 1rem;
+  font-weight: 900;
+  color: green;
 }

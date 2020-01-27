@@ -5,13 +5,15 @@
   position: relative;
   /* justify-content: center; */
   width: 35vw;
-  border: 1px solid rgb(11, 144, 194);
+  /* border: 1px solid rgb(11, 144, 194); */
+  border-bottom: 1px solid rgb(11, 144, 194);
 }
 
 .userlist-container h2 {
   color: rgb(11, 144, 194);
   font-size: 1.5rem;
   font-weight: 300;
+  /* align-self: flex-start; */
 }
 
 .usergoals {
@@ -26,7 +28,7 @@
 .userlist__list {
   /* border: 1px inset rgba(11, 145, 194, 0.11); */
   border-radius: 3px;
-  width: 30vw;
+  width: 100%;
 }
 
 .button-add {
