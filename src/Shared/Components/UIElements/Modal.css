@@ -41,8 +41,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 22%;
-  left: 24%;
+  top: 20%;
+  left: 35%;
 }
 
 .suggest__modal-content {
@@ -56,4 +56,9 @@
 .logout-modal {
   top: 20vh;
   left: 35vw;
+}
+
+.modal-goalDetail {
+  top: 20%;
+  left: 35%;
 }

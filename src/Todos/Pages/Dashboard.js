@@ -5,6 +5,7 @@ import UserList from "../Components/UserList";
 import PartnerList from "../Components/PartnerList";
 import UserActions from "../../Users/Components/UserActions";
 import GoalHistory from "../../Users/Components/GoalHistory";
+import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
 import Footer from "../../Shared/Pages/Footer";
 
 import "./Dashboard.css";
@@ -58,9 +59,7 @@ const Dashboard = () => {
             `${process.env.REACT_APP_BACKEND_URL}/users/${auth.partnerId}/goals`
           );
           setPartnerGoals(responseData);
-        } catch (err) {
-          console.log(err);
-        }
+        } catch (err) {}
       };
       partnerGoals();
     }
@@ -75,9 +74,7 @@ const Dashboard = () => {
         );
 
         setLoadedActions(actionData);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     fetchActions();
     setRefreshFlag(false);
@@ -86,9 +83,10 @@ const Dashboard = () => {
   return (
     <div className="app-container">
       <h2>Dashboard</h2>
+      {isLoading && <LoadingSpinner asOverlay />}
       <div className="dashboard-container">
         <div className="leftside-container">
-          {!isLoading && loadedGoals && (
+          {!isLoading && loadedGoals && user !== null && (
             <UserList
               userId={auth.userId}
               goals={loadedGoals}
@@ -99,9 +97,11 @@ const Dashboard = () => {
             />
           )}
 
-          <div className="goalhistory-container">
-            <GoalHistory userId={auth.userId} />
-          </div>
+          {!isLoading && loadedGoals && (
+            <div className="goalhistory-container">
+              <GoalHistory userId={auth.userId} />
+            </div>
+          )}
 
           {/* {isLoading && <LoadingSpinner />} */}
         </div>

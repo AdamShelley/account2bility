@@ -65,3 +65,25 @@
   max-height: 1rem;
   align-items: center;
 }
+
+@media (max-width: 600px) {
+  .app-container {
+    width: 100%;
+  }
+  .dashboard-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .userlist-container {
+    width: 100%;
+  }
+
+  .leftside-container {
+    width: 60%;
+  }
+
+  .usergoals {
+    width: 100%;
+  }
+}
