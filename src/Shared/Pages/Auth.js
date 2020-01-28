@@ -107,7 +107,7 @@ const Auth = props => {
       }
     } else {
       try {
-        await sendRequest(
+        const responseData = await sendRequest(
           `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           "POST",
           JSON.stringify({
@@ -117,7 +117,12 @@ const Auth = props => {
           }),
           { "Content-Type": "application/json" }
         );
-      } catch (err) {}
+
+        auth.login(responseData);
+        history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -146,7 +151,7 @@ const Auth = props => {
     <div className="auth-container">
       <Card className="login-card">
         <form onSubmit={authSubmitHandler}>
-          <h2>{isLoginMode ? "login" : "Sign-up"}</h2>
+          <h2>{isLoginMode ? "LOGIN" : "SIGNUP"}</h2>
           {!isLoginMode && (
             <Input
               element="input"

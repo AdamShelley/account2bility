@@ -16,6 +16,12 @@ export const useAuth = () => {
     console.log("logging in");
     console.log(data);
     setToken(data.token);
+    setUserImage(data.image);
+    setUserId(data.userId);
+    setUsername(data.name);
+    setuserEmail(data.email);
+    setPartnerName(data.partnerName);
+    setPartnerId(data.partnerId);
 
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
@@ -28,13 +34,6 @@ export const useAuth = () => {
         expiration: tokenExpirationDate.toISOString()
       })
     );
-
-    setUserImage(data.image);
-    setUserId(data.userId);
-    setUsername(data.name);
-    setPartnerName(data.partner.name);
-    setPartnerId(data.partner._id);
-    setuserEmail(data.email);
   }, []);
 
   const logout = useCallback(() => {
@@ -42,6 +41,7 @@ export const useAuth = () => {
     setUserId(null);
     setUsername(null);
     setPartnerName(null);
+    setPartnerId(null);
     setuserEmail(null);
     setUserImage(null);
     setTokenExpirationDate(null);

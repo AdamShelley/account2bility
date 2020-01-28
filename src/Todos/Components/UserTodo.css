@@ -13,14 +13,14 @@
   display: flex;
   overflow: hidden;
   font-size: 0.9rem;
-  padding: 0.5rem;
+  padding: 0.6rem;
   align-items: center;
 
   border: 2px solid rgb(204, 215, 218);
   border-radius: 1px;
   background-color: #fff;
   color: #333;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .todo-item:hover {
@@ -58,7 +58,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(197, 23, 23, 0.678);
+  background-color: #fc5185;
   color: white;
 }
 
@@ -76,21 +76,38 @@
 }
 
 .todo-item-goal-pending {
-  border: 1px solid rgba(51, 51, 51, 0.151);
-  background-color: #fafafa;
-  color: #333;
+  /* border: 1px solid rgba(51, 51, 51, 0.151); */
+  border: 1px solid #364f6b;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #3b2c54;
   font-weight: 600;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.todo-item-goal-pending > p:last-child {
+  margin-left: 10rem;
 }
 
 .todo-item-goal-accepted {
-  background-color: lightgreen;
+  background-color: #e7f2f6;
   display: flex;
-  color: #333;
-  border: 1px solid #333;
+  color: #362315;
+  border: 1px solid #364f6b;
+  font-weight: 300;
+}
+
+.todo-item-goal-accepted:hover {
+  background-color: #364f6b;
+  display: flex;
+  color: #f0f0f0;
+  border: 1px solid #364f6b;
 }
 
 .todo-item-goal-rejected {
-  background-color: salmon;
-  border: 1px solid #333;
-  color: #333;
+  background-color: #6b364f;
+  border: 1px solid #364f6b;
+  color: #e7f2f6;
+  font-weight: 600;
 }

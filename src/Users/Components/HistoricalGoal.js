@@ -3,6 +3,7 @@ import React from "react";
 import "./HistoricalGoal.css";
 
 const HistoricalGoal = props => {
+  console.log(props);
   return (
     <div>
       <li className={`todo-item todo-item-goal-${props.addedStyle}ed`}>

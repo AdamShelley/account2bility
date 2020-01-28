@@ -5,12 +5,12 @@
   position: relative;
   /* justify-content: center; */
   width: 35vw;
-  /* border: 1px solid rgb(11, 144, 194); */
-  border-bottom: 1px solid rgb(11, 144, 194);
+  /* border: 1px solid #364f6b; */
+  /* border-bottom: 1px solid #364f6b; */
 }
 
 .userlist-container h2 {
-  color: rgb(11, 144, 194);
+  color: #364f6b;
   font-size: 1.5rem;
   font-weight: 300;
   /* align-self: flex-start; */
@@ -29,29 +29,6 @@
   /* border: 1px inset rgba(11, 145, 194, 0.11); */
   border-radius: 3px;
   width: 100%;
-}
-
-.button-add {
-  margin-top: 2rem;
-  padding: 0.5rem 2rem;
-  color: white;
-  /* background-color: rgb(11, 144, 194); */
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  /* border: 1px solid rgb(11, 144, 194); */
-  transition: all 0.3s;
-  border-radius: 1px;
-  background-color: white;
-  color: #333;
-  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-.button-add:hover {
-  background-color: white;
-  border: 1px solid rgb(11, 144, 194);
-  color: rgb(11, 144, 194);
 }
 
 .goal-item__modal-content {

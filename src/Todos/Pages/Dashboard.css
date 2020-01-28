@@ -9,7 +9,7 @@
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: 300;
-  color: rgb(11, 166, 194);
+  color: #364f6b;
   letter-spacing: 2px;
 }
 
@@ -52,18 +52,6 @@
   padding: 1rem;
   margin-bottom: 1rem;
   margin-top: 2rem;
-}
-
-.footer {
-  background-color: rgb(80, 166, 193);
-  color: white;
-  font-size: 0.8rem;
-  padding: 1rem;
-  grid-column: 1/ 9;
-  display: flex;
-  font-weight: 700;
-  max-height: 1rem;
-  align-items: center;
 }
 
 @media (max-width: 600px) {

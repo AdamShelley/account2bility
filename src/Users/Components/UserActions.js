@@ -10,7 +10,7 @@ import { useHttpClient } from "../../Shared/Hooks/http-hook";
 
 const UserActions = props => {
   const filteredActions = props.actions.actions.actions.filter(
-    action => action.response === ""
+    action => action.response !== ""
   );
   const { isLoading, sendRequest } = useHttpClient();
   const auth = useContext(AuthContext);

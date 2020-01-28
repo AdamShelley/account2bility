@@ -4,13 +4,13 @@
 }
 
 .action-container h2 {
-  color: rgb(11, 144, 194);
+  color: #364f6b;
   font-size: 1.5rem;
   font-weight: 300;
 }
 
 .action-container__details {
   min-height: 30vh;
-  /* border-top: 1px solid rgb(11, 144, 194); */
-  /* border-bottom: 1px solid rgb(11, 144, 194); */
+  /* border-top: 1px solid #364f6b; */
+  /* border-bottom: 1px solid #364f6b; */
 }

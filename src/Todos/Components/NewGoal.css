@@ -12,7 +12,7 @@
 }
 
 .addgoal-button {
-  background-color: rgb(11, 144, 194);
+  background-color: #364f6b;
   color: white;
   border: 1px solid transparent;
   padding: 1rem 2rem;
@@ -24,8 +24,8 @@
 
 .addgoal-button:hover {
   background-color: white;
-  color: rgb(11, 144, 194);
-  border: 1px solid rgb(11, 144, 194);
+  color: #364f6b;
+  border: 1px solid #364f6b;
   cursor: pointer;
 }
 

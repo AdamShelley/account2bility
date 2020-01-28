@@ -1,3 +1,10 @@
+/* Colors: 
+  1:#fc5185
+  2:#364f6b
+  3:#43dde6
+  4:#f0f0f0
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +14,8 @@
 
 #backdrop-hook {
   transition: all 0.3s;
+}
+
+html {
+  background-color: #f0f0f05b;
 }

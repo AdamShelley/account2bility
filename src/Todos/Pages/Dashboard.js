@@ -22,7 +22,7 @@ const Dashboard = () => {
   const [refreshFlag, setRefreshFlag] = useState(false);
 
   const auth = useContext(AuthContext);
-
+  console.log(auth);
   let user = auth.userId;
 
   const updateActionHandler = () => {
@@ -38,7 +38,7 @@ const Dashboard = () => {
     const fetchGoals = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/users/${user}/goals`
+          `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}/goals`
         );
 
         setloadedGoals(responseData);
@@ -48,7 +48,7 @@ const Dashboard = () => {
     };
     fetchGoals();
     setRefreshFlag(false);
-  }, [sendRequest, user, updateGoals, refreshFlag]);
+  }, [sendRequest, user, updateGoals, refreshFlag, auth.userId]);
 
   // Fetch the partners goals
   useEffect(() => {
@@ -59,7 +59,9 @@ const Dashboard = () => {
             `${process.env.REACT_APP_BACKEND_URL}/users/${auth.partnerId}/goals`
           );
           setPartnerGoals(responseData);
-        } catch (err) {}
+        } catch (err) {
+          console.log(err);
+        }
       };
       partnerGoals();
     }
@@ -70,23 +72,25 @@ const Dashboard = () => {
     const fetchActions = async () => {
       try {
         const actionData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/actions/${user}`
+          `${process.env.REACT_APP_BACKEND_URL}/actions/${auth.userId}`
         );
 
         setLoadedActions(actionData);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchActions();
     setRefreshFlag(false);
-  }, [sendRequest, setLoadedActions, user, refreshFlag]);
+  }, [sendRequest, setLoadedActions, user, refreshFlag, auth.userId]);
 
   return (
     <div className="app-container">
-      <h2>Dashboard</h2>
+      <h2>Stay accountable, with a friend.</h2>
       {isLoading && <LoadingSpinner asOverlay />}
       <div className="dashboard-container">
         <div className="leftside-container">
-          {!isLoading && loadedGoals && user !== null && (
+          {!isLoading && loadedGoals && (
             <UserList
               userId={auth.userId}
               goals={loadedGoals}

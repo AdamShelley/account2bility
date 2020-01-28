@@ -15,7 +15,7 @@
 }
 
 .action-item--delete {
-  background-color: rgba(189, 2, 2, 0.877);
+  background-color: #fc5185;
   color: white;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .action-item--info--delete {
-  color: red;
+  color: #fc5185;
 }
 
 .suggested-item {

@@ -23,7 +23,7 @@
   width: 24px;
   background-color: transparent;
   border-radius: 5px;
-  border: 1px solid rgb(11, 166, 194);
+  border: 1px solid #364f6b;
   transition: all 0.3s ease-out;
 }
 
@@ -35,7 +35,7 @@
   height: 0;
   width: 0;
   border-radius: 5px;
-  border: solid rgb(11, 166, 194);
+  border: solid #364f6b;
   border-width: 0 px 3px 0;
   transform: rotate(0deg) scale(0);
   opacity: 1;
@@ -57,7 +57,7 @@
   top: 3px;
   width: 6px;
   height: 12px;
-  border: solid rgb(11, 166, 194);
+  border: solid #364f6b;
   border-width: 0 2px 2px 0;
   background-color: transparent;
   border-radius: 0;

@@ -12,6 +12,10 @@
   margin-top: 2rem;
 }
 
+.suggestion__tab > .button-suggest {
+  margin-top: 0;
+}
+
 .suggestion__tab input {
   padding: 0.5rem 1rem;
   border-radius: 3px;
