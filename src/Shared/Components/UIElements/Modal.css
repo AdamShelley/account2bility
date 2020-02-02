@@ -60,5 +60,7 @@
 
 .modal-goalDetail {
   top: 20%;
-  left: 35%;
+  left: 40%;
+  width: 25rem;
+  border-radius: 3px;
 }

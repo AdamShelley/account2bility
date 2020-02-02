@@ -105,6 +105,11 @@ const UserList = props => {
           <h2> {props.username}'s Goals</h2>
           <ul className="userlist__list">
             {/* {isLoading && <LoadingSpinner asOverlay />} */}
+            {!isLoading && props.goals.data.length === 0 && (
+              <p className="userlist__tutorial">
+                Start here by adding your own goals.
+              </p>
+            )}
             {props.goals.data.map((todo, index) => {
               let style;
               let decision;

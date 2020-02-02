@@ -87,3 +87,32 @@
 .button--delink {
   grid-column: 2;
 }
+
+@media (max-width: 600px) {
+  .account-container {
+    flex-direction: column;
+    /* height: 100%; */
+  }
+
+  .account-container--card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .account-container--details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .user-details,
+  .partner-details {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

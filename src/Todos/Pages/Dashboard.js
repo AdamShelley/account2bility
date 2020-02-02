@@ -6,6 +6,7 @@ import PartnerList from "../Components/PartnerList";
 import UserActions from "../../Users/Components/UserActions";
 import GoalHistory from "../../Users/Components/GoalHistory";
 import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
+import Button from "../../Shared/Components/UIElements/Button";
 import Footer from "../../Shared/Pages/Footer";
 
 import "./Dashboard.css";
@@ -19,6 +20,7 @@ const Dashboard = () => {
   const { sendRequest, isLoading } = useHttpClient();
   const [updateGoals, setupdateGoals] = useState(false);
 
+  const [partnerRequest, setPartnerRequest] = useState();
   const [refreshFlag, setRefreshFlag] = useState(false);
 
   const auth = useContext(AuthContext);
@@ -84,9 +86,52 @@ const Dashboard = () => {
     setRefreshFlag(false);
   }, [sendRequest, setLoadedActions, user, refreshFlag, auth.userId]);
 
+  useEffect(() => {
+    if (auth.partnerRequest) {
+      setPartnerRequest(true);
+    }
+  }, [auth.partnerRequest]);
+
+  const partnerResponseHandler = async response => {
+    console.log(response);
+    try {
+      await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}`,
+        "PATCH",
+        JSON.stringify({
+          partnerId: auth.partnerRequest,
+          response
+        }),
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token
+        }
+      );
+      setPartnerRequest(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="app-container">
       <h2>Stay accountable, with a friend.</h2>
+
+      {/* Check for partner request */}
+      {!isLoading && partnerRequest && (
+        <div className="partner-request-container">
+          <p>PERSONS_NAME has requested to partner with you. Do you accept?</p>
+          <div className="partner-request-container--buttons">
+            <Button onClick={() => partnerResponseHandler("ACCEPT")}>
+              Accept
+            </Button>
+            <Button onClick={() => partnerResponseHandler("REJECT")}>
+              Reject
+            </Button>
+          </div>
+        </div>
+      )}
+
       {isLoading && <LoadingSpinner asOverlay />}
       <div className="dashboard-container">
         <div className="leftside-container">
@@ -119,7 +164,9 @@ const Dashboard = () => {
               token={auth.token}
             />
           )}
-          {!isLoading && !partnerGoals && <PartnerList />}
+          {!isLoading && !partnerGoals && (
+            <PartnerList linkRequest={partnerRequest} />
+          )}
 
           <div className="useraction-container">
             {!isLoading && loadedActions && (

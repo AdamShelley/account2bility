@@ -12,6 +12,8 @@ const GoalHistory = props => {
   const { isLoading, sendRequest } = useHttpClient();
   const [historicalGoals, setHistoricalGoals] = useState();
 
+  console.log(props);
+
   useEffect(() => {
     const fetchHistory = async () => {
       console.log("Fetching History");
@@ -28,6 +30,7 @@ const GoalHistory = props => {
     fetchHistory();
   }, [props.userId, sendRequest]);
 
+  console.log(historicalGoals);
   return (
     <div className="history-container">
       <Card className="history-container__details">

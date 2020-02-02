@@ -11,6 +11,7 @@ export const useAuth = () => {
   const [token, setToken] = useState();
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userImage, setUserImage] = useState();
+  const [partnerRequest, setPartnerRequest] = useState();
 
   const login = useCallback((data, expirationDate) => {
     console.log("logging in");
@@ -20,8 +21,17 @@ export const useAuth = () => {
     setUserId(data.userId);
     setUsername(data.name);
     setuserEmail(data.email);
-    setPartnerName(data.partnerName);
-    setPartnerId(data.partnerId);
+
+    if (data.partner) {
+      // console.log("setting partner info");
+      setPartnerName(data.partner.name);
+      setPartnerId(data.partner._id);
+    }
+
+    if (data.partner === null && data.partnerRequest) {
+      // console.log("adding partner request");
+      setPartnerRequest(data.partnerRequest);
+    }
 
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
@@ -45,6 +55,7 @@ export const useAuth = () => {
     setuserEmail(null);
     setUserImage(null);
     setTokenExpirationDate(null);
+    setPartnerRequest(null);
     localStorage.removeItem("userData");
   }, []);
 
@@ -80,6 +91,7 @@ export const useAuth = () => {
     userEmail,
     partnerId,
     partnerName,
+    partnerRequest,
     userImage
   };
 };

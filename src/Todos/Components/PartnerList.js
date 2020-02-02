@@ -15,25 +15,34 @@ const PartnerList = props => {
   const auth = useContext(AuthContext);
   const { isLoading, sendRequest } = useHttpClient();
   const [showAddModal, setShowAddModal] = useState(false);
-
+  const [refresh, setRefresh] = useState(false);
   const [partnerEmail, setPartnerEmail] = useState();
 
   const openAddHandler = () => setShowAddModal(true);
   const closeAddHandler = () => setShowAddModal(false);
 
+  const refreshActions = () => {
+    setRefresh(true);
+  };
+
   const linkPartnerHandler = async data => {
+    refreshActions();
+
+    console.log("partner request sent ");
+    // Fetch sendPartnerRequest
     try {
       await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}`,
-        "PATCH",
-        JSON.stringify({ partnerEmail: partnerEmail }),
+        `${process.env.REACT_APP_BACKEND_URL}/users/request`,
+        "POST",
+        JSON.stringify({
+          partnerEmail: partnerEmail,
+          userId: auth.userId
+        }),
         {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token
         }
       );
-
-      // Need to update the context
     } catch (err) {
       console.log(err);
     }
@@ -55,25 +64,33 @@ const PartnerList = props => {
         </div>
       </Modal>
 
+      {props.linkRequest && (
+        <p className="partnerlink-request">
+          {" "}
+          You have requested a partner link. Please wait for their response.
+        </p>
+      )}
       <div className="partnerlist-container">
         {isLoading && <LoadingSpinner asOverlay />}
         {!props.partnerConnected && (
           <Card className="usergoals">
             <h2>Add a partner</h2>
-            <input
-              id="partner-link"
-              type="text"
-              element="input"
-              label="partnerLink"
-              placeholder="Partner Email"
-              onChange={e => setPartnerEmail(e.target.value)}
-            />
-            <Button
-              onClick={linkPartnerHandler}
-              addedClass="button-accept button-suggest"
-            >
-              Link Partner
-            </Button>
+            <div className="partnerlist__connection">
+              <input
+                id="partner-link"
+                type="text"
+                element="input"
+                label="partnerLink"
+                placeholder="Partner Email"
+                onChange={e => setPartnerEmail(e.target.value)}
+              />
+              <Button
+                onClick={linkPartnerHandler}
+                addedClass="button-accept button-suggest"
+              >
+                Request Link
+              </Button>
+            </div>
           </Card>
         )}
 

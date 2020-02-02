@@ -15,16 +15,17 @@
   font-size: 0.9rem;
   padding: 0.6rem;
   align-items: center;
-
-  border: 2px solid rgb(204, 215, 218);
+  border-radius: 5px;
+  /* border: 2px solid #e7f2f6; */
   border-radius: 1px;
-  background-color: #fff;
-  color: #333;
+  background-color: #364f6b;
+  color: #e7f2f6;
   font-weight: 600;
 }
 
 .todo-item:hover {
-  background-color: rgba(11, 145, 194, 0.219);
+  background-color: #456b8c;
+  color: #e7f2f6;
   cursor: pointer;
 }
 

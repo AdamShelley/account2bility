@@ -132,8 +132,8 @@ const Auth = props => {
         `${process.env.REACT_APP_BACKEND_URL}/users/login`,
         "POST",
         JSON.stringify({
-          email: "test4@gmail.com",
-          password: "123456"
+          email: process.env.REACT_APP_TEST_USER,
+          password: process.env.REACT_APP_TEST_PASS
         }),
         {
           "Content-Type": "application/json",
@@ -184,9 +184,11 @@ const Auth = props => {
             onInput={inputHandler}
           />
 
-          <Button type="submit">{isLoginMode ? "Login" : "Sign-up"}</Button>
+          <Button addedClass="action-button" type="submit">
+            {isLoginMode ? "Login" : "Sign-up"}
+          </Button>
         </form>
-        <Button inverse onClick={switchToSignUp}>
+        <Button addedClass="switch-button" inverse onClick={switchToSignUp}>
           Switch to: {isLoginMode ? "Sign-up" : "Login"}
         </Button>
 

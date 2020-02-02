@@ -10,8 +10,9 @@ import { useHttpClient } from "../../Shared/Hooks/http-hook";
 
 const UserActions = props => {
   const filteredActions = props.actions.actions.actions.filter(
-    action => action.response !== ""
+    action => action.response === ""
   );
+  console.log(props);
   const { isLoading, sendRequest } = useHttpClient();
   const auth = useContext(AuthContext);
   // Respond to clicks on accept + reject
@@ -41,9 +42,15 @@ const UserActions = props => {
   return (
     <div className="action-container">
       <Card className="action-container__details">
-        <h2>Action container</h2>
+        <h2>Actions</h2>
         <ul>
           {isLoading && <LoadingSpinner asOverlay />}
+          {!isLoading && filteredActions.length === 0 && (
+            <p className="action-container__tutorial">
+              When your partner completes a goal, it will show up here for you
+              to confirm
+            </p>
+          )}
           {!isLoading &&
             filteredActions &&
             filteredActions.map((action, index) => {

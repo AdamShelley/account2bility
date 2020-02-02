@@ -5,15 +5,17 @@ import Button from "../../Shared/Components/UIElements/Button";
 import "./UserTodo.css";
 
 const UserTodo = props => {
-  const acceptClicked = () => {
+  const acceptClicked = e => {
+    e.stopPropagation();
     props.responseHandler(props.id, "accept");
   };
 
-  const rejectClicked = () => {
+  const rejectClicked = e => {
+    e.stopPropagation();
     props.responseHandler(props.id, "delete");
   };
 
-  const goalClickedHandler = () => {
+  const goalClickedHandler = e => {
     props.clicked(props.id);
   };
 

@@ -27,7 +27,8 @@ function App() {
     userEmail,
     partnerId,
     partnerName,
-    userImage
+    userImage,
+    partnerRequest
   } = useAuth();
   let routes;
 
@@ -69,7 +70,8 @@ function App() {
         partnerName: partnerName,
         login: login,
         logout: logout,
-        userImage: userImage
+        userImage: userImage,
+        partnerRequest: partnerRequest
       }}
     >
       <Router>

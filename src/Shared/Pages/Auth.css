@@ -7,10 +7,10 @@
 }
 
 .login-card {
-  width: 25%;
+  width: 20%;
   min-height: 30vh;
   margin-top: 3rem;
-  padding: 4rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,4 +38,25 @@
 .login-card button {
   margin-top: 0.5rem;
   width: 100%;
+}
+
+.action-button:hover,
+.switch-button:hover,
+.tester-login:hover {
+  background-color: #456b8c;
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    width: 100%;
+    margin: 0;
+  }
+
+  .logout-button {
+    display: none;
+  }
+
+  .nav-links {
+    margin-bottom: 1rem;
+  }
 }

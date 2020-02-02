@@ -14,7 +14,7 @@ const GoalDetails = props => {
         <p className="modal__goal-details--info--deadline">
           Deadline: {props.details.goal.deadline}
         </p>
-        <p modal__goal-details--info--status>
+        <p className="modal__goal-details--info--status">
           {props.details.goal.status === true ? "Submitted" : "In progress"}
         </p>
       </div>

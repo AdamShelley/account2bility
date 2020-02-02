@@ -16,7 +16,7 @@
   /* letter-spacing: 1px; */
   font-size: 2rem;
   font-weight: 300;
-  color: #333;
+  color: #364f6b;
 }
 
 .modal__goal-details--info {
@@ -28,11 +28,12 @@
 
 .modal__goal-details--info > p {
   margin-top: 1rem;
-  border: 2px solid #364f6b;
+  border: 1px solid #364f6b;
   padding: 0.7rem;
   border-radius: 5px;
   letter-spacing: 0.5px;
   width: 100%;
+  font-weight: 400;
 }
 
 .modal__goal-details--info--description {
