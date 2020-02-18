@@ -11,12 +11,12 @@ import "./PartnerList.css";
 import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
 
 const PartnerList = props => {
-  console.log(props);
   const auth = useContext(AuthContext);
   const { isLoading, sendRequest } = useHttpClient();
   const [showAddModal, setShowAddModal] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [partnerEmail, setPartnerEmail] = useState();
+  const [partnerRequested, setPartnerRequested] = useState(false);
 
   const openAddHandler = () => setShowAddModal(true);
   const closeAddHandler = () => setShowAddModal(false);
@@ -26,12 +26,9 @@ const PartnerList = props => {
   };
 
   const linkPartnerHandler = async data => {
-    refreshActions();
-
-    console.log("partner request sent ");
     // Fetch sendPartnerRequest
     try {
-      await sendRequest(
+      const partner = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/users/request`,
         "POST",
         JSON.stringify({
@@ -43,9 +40,9 @@ const PartnerList = props => {
           Authorization: "Bearer " + auth.token
         }
       );
-    } catch (err) {
-      console.log(err);
-    }
+      setPartnerRequested(true);
+      props.updateDash(partner);
+    } catch (err) {}
   };
 
   return (
@@ -64,15 +61,10 @@ const PartnerList = props => {
         </div>
       </Modal>
 
-      {props.linkRequest && (
-        <p className="partnerlink-request">
-          {" "}
-          You have requested a partner link. Please wait for their response.
-        </p>
-      )}
       <div className="partnerlist-container">
         {isLoading && <LoadingSpinner asOverlay />}
-        {!props.partnerConnected && (
+
+        {!props.partnerConnected && !partnerRequested && (
           <Card className="usergoals">
             <h2>Add a partner</h2>
             <div className="partnerlist__connection">

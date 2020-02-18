@@ -17,7 +17,7 @@
   align-items: center;
   border-radius: 5px;
   /* border: 2px solid #e7f2f6; */
-  border-radius: 1px;
+  border-radius: 3px;
   background-color: #364f6b;
   color: #e7f2f6;
   font-weight: 600;
@@ -34,7 +34,7 @@
 }
 
 .todo-item p {
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   flex: 1;
 }
 
@@ -85,10 +85,13 @@
   font-weight: 600;
   display: flex;
   justify-content: space-evenly;
+  transition: all 0.3s ease-in-out;
 }
 
 .todo-item-goal-pending > p:last-child {
-  margin-left: 10rem;
+  /* margin-left: 10rem; */
+  margin-left: 9rem;
+  font-size: 0.9rem;
 }
 
 .todo-item-goal-accepted {

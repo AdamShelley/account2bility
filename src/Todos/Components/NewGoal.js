@@ -89,9 +89,7 @@ const NewGoal = props => {
           Authorization: "Bearer " + auth.token
         }
       );
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
 
     props.closeModal();
     props.updateHandler();
@@ -100,7 +98,11 @@ const NewGoal = props => {
   return (
     <React.Fragment>
       {isLoading && <LoadingSpinner asOverlay />}
-      <form className="addGoal-form" onSubmit={goalSubmitHandler}>
+      <form
+        autocomplete="off"
+        className="addGoal-form"
+        onSubmit={goalSubmitHandler}
+      >
         <Input
           id="goal"
           type="text"

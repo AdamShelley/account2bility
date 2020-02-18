@@ -13,9 +13,6 @@ const SuggestGoal = props => {
   const auth = useContext(AuthContext);
 
   const suggestGoalHandler = async () => {
-    console.log("suggest clicked");
-    console.log(suggestBox);
-
     // Send a post request to suggest a goal to the partner
     try {
       await sendRequest(

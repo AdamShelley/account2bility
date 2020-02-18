@@ -9,7 +9,6 @@ import { useHttpClient } from "../../Shared/Hooks/http-hook";
 import "./Account.css";
 
 const Account = props => {
-  console.log(props);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const auth = useContext(AuthContext);
   const { isLoading, sendRequest } = useHttpClient();
@@ -17,9 +16,7 @@ const Account = props => {
   const openModal = () => setShowConfirmModal(true);
   const closeModal = () => setShowConfirmModal(false);
 
-  const deleteAccountHandler = () => {
-    console.log("Are you sure modal?");
-  };
+  const deleteAccountHandler = () => {};
 
   const delinkAccountHandler = async () => {
     closeModal();
@@ -36,9 +33,7 @@ const Account = props => {
           Authorization: "Bearer " + auth.token
         }
       );
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

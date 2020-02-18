@@ -8,42 +8,94 @@
 
 .login-card {
   width: 20%;
-  min-height: 30vh;
+  min-height: 50vh;
   margin-top: 3rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.form-control {
+  width: 80%;
+  margin: 0.5rem;
 }
 
 .login-card form label {
   font-weight: 600;
+  color: #0a2c4b;
+  text-align: left;
+  margin-bottom: 0.7rem;
 }
 
 .login-card form h2 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 100;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  color: #0a2c4b;
 }
 
 .login-card form button {
-  width: 50%;
+  width: 80%;
 }
 
 .login-card input {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
+  /* margin-bottom: 2rem; */
+  width: 100%;
+}
+
+#password {
+  margin-bottom: 2rem;
 }
 
 .login-card button {
   margin-top: 0.5rem;
-  width: 100%;
+  margin-bottom: 0.1rem;
+  margin-right: 0;
+  /* width: 50%; */
+  border-radius: 0px;
+  font-weight: 600;
+}
+
+.switch-button,
+.tester-login {
+  width: 80%;
+  margin-right: 0;
+  border-radius: 0px;
+}
+
+.tester-login {
 }
 
 .action-button:hover,
 .switch-button:hover,
 .tester-login:hover {
   background-color: #456b8c;
+}
+
+.auth-error {
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 1rem;
+  font-weight: 100;
+  color: #fafafa;
+  width: 100%;
+  font-size: 1.5rem;
+  background-color: #923e5d;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 600px) {

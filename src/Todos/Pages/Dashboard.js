@@ -5,6 +5,7 @@ import UserList from "../Components/UserList";
 import PartnerList from "../Components/PartnerList";
 import UserActions from "../../Users/Components/UserActions";
 import GoalHistory from "../../Users/Components/GoalHistory";
+import Card from "../../Shared/Components/UIElements/Card";
 import LoadingSpinner from "../../Shared/Components/UIElements/LoadingSpinner";
 import Button from "../../Shared/Components/UIElements/Button";
 import Footer from "../../Shared/Pages/Footer";
@@ -19,12 +20,12 @@ const Dashboard = () => {
   const [loadedActions, setLoadedActions] = useState();
   const { sendRequest, isLoading } = useHttpClient();
   const [updateGoals, setupdateGoals] = useState(false);
-
   const [partnerRequest, setPartnerRequest] = useState();
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [partnerRequested, setPartnerRequested] = useState();
 
   const auth = useContext(AuthContext);
-  console.log(auth);
+  // console.log(auth);
   let user = auth.userId;
 
   const updateActionHandler = () => {
@@ -33,6 +34,10 @@ const Dashboard = () => {
 
   const refreshActions = () => {
     setRefreshFlag(true);
+  };
+
+  const setPartnerInfo = data => {
+    setPartnerRequested(data.partner.email);
   };
 
   // Fetch the users goals
@@ -44,9 +49,7 @@ const Dashboard = () => {
         );
 
         setloadedGoals(responseData);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     fetchGoals();
     setRefreshFlag(false);
@@ -61,9 +64,7 @@ const Dashboard = () => {
             `${process.env.REACT_APP_BACKEND_URL}/users/${auth.partnerId}/goals`
           );
           setPartnerGoals(responseData);
-        } catch (err) {
-          console.log(err);
-        }
+        } catch (err) {}
       };
       partnerGoals();
     }
@@ -78,9 +79,7 @@ const Dashboard = () => {
         );
 
         setLoadedActions(actionData);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     fetchActions();
     setRefreshFlag(false);
@@ -92,8 +91,8 @@ const Dashboard = () => {
     }
   }, [auth.partnerRequest]);
 
+  // Partner response handler
   const partnerResponseHandler = async response => {
-    console.log(response);
     try {
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}`,
@@ -108,9 +107,8 @@ const Dashboard = () => {
         }
       );
       setPartnerRequest(false);
-    } catch (err) {
-      console.log(err);
-    }
+      auth.updatePartner(auth.partnerRequest);
+    } catch (err) {}
   };
 
   return (
@@ -120,7 +118,10 @@ const Dashboard = () => {
       {/* Check for partner request */}
       {!isLoading && partnerRequest && (
         <div className="partner-request-container">
-          <p>PERSONS_NAME has requested to partner with you. Do you accept?</p>
+          <p>
+            {auth.partnerEmail} has requested to partner with you. Do you
+            accept?
+          </p>
           <div className="partner-request-container--buttons">
             <Button onClick={() => partnerResponseHandler("ACCEPT")}>
               Accept
@@ -154,6 +155,7 @@ const Dashboard = () => {
 
           {/* {isLoading && <LoadingSpinner />} */}
         </div>
+        {/* If partner exists */}
         <div className="rightside-container">
           {!isLoading && partnerGoals && (
             <PartnerList
@@ -164,16 +166,28 @@ const Dashboard = () => {
               token={auth.token}
             />
           )}
-          {!isLoading && !partnerGoals && (
-            <PartnerList linkRequest={partnerRequest} />
+          {/* If partner has not been requested yet */}
+          {!isLoading && !partnerGoals && !auth.partnerRequested && (
+            <PartnerList
+              setInfo={setPartnerInfo}
+              linkRequest={partnerRequest}
+              updateDash={setPartnerInfo}
+            />
+          )}
+
+          {/* If partner has been requested */}
+          {!isLoading && !partnerGoals && auth.partnerRequested && (
+            <Card className="usergoals">
+              <p className="partnerlink-request">
+                You have requested a partner link. Please wait for their
+                response.
+              </p>
+            </Card>
           )}
 
           <div className="useraction-container">
             {!isLoading && loadedActions && (
-              <UserActions
-                refreshActions={refreshActions}
-                actions={loadedActions}
-              />
+              <UserActions actions={loadedActions} />
             )}
           </div>
         </div>

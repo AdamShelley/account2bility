@@ -60,9 +60,7 @@ const UserList = props => {
       );
       props.refresh();
       // Delete the todo buttons from the list
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

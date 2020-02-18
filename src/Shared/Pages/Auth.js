@@ -48,7 +48,7 @@ const Auth = props => {
   const { sendRequest, isLoading } = useHttpClient();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-
+  const [error, setError] = useState();
   const history = useHistory();
 
   const [formState, dispatch] = useReducer(formReducer, {
@@ -103,7 +103,10 @@ const Auth = props => {
         auth.login(responseData);
         history.push("/");
       } catch (err) {
-        console.log(err);
+        setError("Wrong Credentials");
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
       }
     } else {
       try {
@@ -121,7 +124,10 @@ const Auth = props => {
         auth.login(responseData);
         history.push("/");
       } catch (err) {
-        console.log(err);
+        setError("User already exists");
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
       }
     }
   };
@@ -142,15 +148,14 @@ const Auth = props => {
       );
       auth.login(responseData);
       history.push("/");
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (
     <div className="auth-container">
       <Card className="login-card">
         <form onSubmit={authSubmitHandler}>
+          {error && <p className="auth-error">{error}</p>}
           <h2>{isLoginMode ? "LOGIN" : "SIGNUP"}</h2>
           {!isLoginMode && (
             <Input
@@ -189,13 +194,13 @@ const Auth = props => {
           </Button>
         </form>
         <Button addedClass="switch-button" inverse onClick={switchToSignUp}>
-          Switch to: {isLoginMode ? "Sign-up" : "Login"}
+          {isLoginMode ? "Sign-up" : "Login"}
         </Button>
 
         {isLoading && <LoadingSpinner asOverlay />}
         <Button addedClass="tester-login" onClick={signInTester}>
           {" "}
-          TESTER Account{" "}
+          Trial Account{" "}
         </Button>
       </Card>
     </div>

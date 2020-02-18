@@ -4,7 +4,6 @@ import "./UserTodo.css";
 import "./PartnerTodo.css";
 
 const PartnerTodo = props => {
-  console.log(props);
   return (
     <li className={`todo-item todo-item-partner todo-item-${props.addedClass}`}>
       <p>{props.title}</p>

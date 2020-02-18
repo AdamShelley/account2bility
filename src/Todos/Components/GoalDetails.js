@@ -3,7 +3,6 @@ import React from "react";
 import "./GoalDetails.css";
 
 const GoalDetails = props => {
-  console.log(props);
   return (
     <div className="modal__goal-details">
       <h2>{props.details.goal.title}</h2>

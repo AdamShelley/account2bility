@@ -6,6 +6,7 @@
 }
 
 .account-container--card {
+  margin-top: 5rem;
   width: 50%;
   height: 50vh;
   display: grid;

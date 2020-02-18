@@ -9,6 +9,8 @@
   width: 30vw;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  /* box-shadow: 12px 12px 26px #d1d1d1, -12px -12px 26px #ffffff; */
+
   border-radius: 1px;
 }
 
@@ -35,6 +37,15 @@
 
 .modal__footer {
   padding: 1rem 0.5rem;
+}
+
+.goal-item__modal-content {
+  width: 80%;
+  padding: 1rem 3rem;
+  /* border: 1px solid #333; */
+  margin: 1rem;
+  border-radius: 3px;
+  color: #091d33;
 }
 
 .suggestion-modal {

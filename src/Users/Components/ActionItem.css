@@ -74,6 +74,10 @@
   display: flex;
   font-size: 0.8rem;
   align-items: center;
+  justify-content: center;
+}
+
+.suggest-item__left > p {
 }
 
 .suggested-item__suggestion {

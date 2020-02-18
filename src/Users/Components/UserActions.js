@@ -12,7 +12,6 @@ const UserActions = props => {
   const filteredActions = props.actions.actions.actions.filter(
     action => action.response === ""
   );
-  console.log(props);
   const { isLoading, sendRequest } = useHttpClient();
   const auth = useContext(AuthContext);
   // Respond to clicks on accept + reject
@@ -32,9 +31,7 @@ const UserActions = props => {
         );
 
         props.refreshActions();
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     sendActionResponse();
   };

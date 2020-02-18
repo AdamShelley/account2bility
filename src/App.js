@@ -28,7 +28,9 @@ function App() {
     partnerId,
     partnerName,
     userImage,
-    partnerRequest
+    partnerRequest,
+    partnerRequested,
+    partnerEmail
   } = useAuth();
   let routes;
 
@@ -71,7 +73,9 @@ function App() {
         login: login,
         logout: logout,
         userImage: userImage,
-        partnerRequest: partnerRequest
+        partnerRequest: partnerRequest,
+        partnerRequested: partnerRequested,
+        partnerEmail: partnerEmail
       }}
     >
       <Router>

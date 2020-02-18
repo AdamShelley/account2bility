@@ -12,25 +12,19 @@ const GoalHistory = props => {
   const { isLoading, sendRequest } = useHttpClient();
   const [historicalGoals, setHistoricalGoals] = useState();
 
-  console.log(props);
-
   useEffect(() => {
     const fetchHistory = async () => {
-      console.log("Fetching History");
       try {
         const history = await sendRequest(
           `${process.env.REACT_APP_BACKEND_URL}/history/${props.userId}`
         );
 
         setHistoricalGoals(history);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
     fetchHistory();
   }, [props.userId, sendRequest]);
 
-  console.log(historicalGoals);
   return (
     <div className="history-container">
       <Card className="history-container__details">
